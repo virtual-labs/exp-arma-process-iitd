@@ -1,1 +1,1 @@
-### Aim of the experiment
+### To evaluate and compare the spectral estimates of broadband and narrowband ARMA processes, as well as the sum of sinusoids, by analyzing the effects of various parameters using appropriate methods such as the Yule-Walker approach.
