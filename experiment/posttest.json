@@ -1,91 +1,175 @@
 {
-    "version": 2.0,
-    "questions": [
-      {
-        "question": "What is the relationship between the bandwidth of a signal and the width of its Fourier Transform?",
-        "answers": {
-          "a": "The bandwidth is inversely proportional to the width of the Fourier Transform.",
-          "b": "The bandwidth is directly proportional to the width of the Fourier Transform.",
-          "c": "The bandwidth is unaffected by the Fourier Transform.",
-          "d": "The bandwidth is related to the phase spectrum of the Fourier Transform."
-        },
-        "explanations": {
-          "a": "This is incorrect. The relationship is direct, not inverse.",
-          "b": "Correct! The bandwidth of a signal is directly proportional to the width of its Fourier Transform.",
-          "c": "This is incorrect; the Fourier Transform affects the bandwidth of the signal.",
-          "d": "This is incorrect; the bandwidth is related to the magnitude spectrum, not the phase."
-        },
-        "correctAnswer": "b",
-        "difficulty": "hard"
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is the primary advantage of using Yule-Walker equations for AR model parameter estimation?",
+      "answers": {
+        "a": "They minimize the mean square error of the signal.",
+        "b": "They allow direct computation of AR coefficients from autocorrelation.",
+        "c": "They provide a closed-form solution for both AR and MA coefficients.",
+        "d": "They reduce the computational complexity of ARMA models."
       },
-      {
-        "question": "What is the Fourier Transform of a triangular pulse?",
-        "answers": {
-          "a": "A sinc function.",
-          "b": "A Gaussian function.",
-          "c": "A triangular function.",
-          "d": "A sinc function squared."
-        },
-        "explanations": {
-          "a": "Correct! The Fourier Transform of a triangular pulse results in a sinc function.",
-          "b": "This is incorrect; Gaussian functions are not related to triangular pulses.",
-          "c": "This is incorrect; the Fourier Transform of a triangular pulse is not another triangular pulse.",
-          "d": "This is incorrect; the Fourier Transform of a triangular pulse is a sinc function, not its square."
-        },
-        "correctAnswer": "a",
-        "difficulty": "hard"
+      "explanations": {
+        "a": "Minimizing the mean square error is associated with least squares methods.",
+        "b": "This is correct; Yule-Walker equations rely on autocorrelation for AR coefficient estimation.",
+        "c": "Yule-Walker equations are specifically for AR models, not MA models.",
+        "d": "While computationally efficient, this is not their primary advantage."
       },
-      {
-        "question": "What is the effect of frequency scaling on the Fourier Transform of a signal?",
-        "answers": {
-          "a": "The Fourier Transform is scaled by the same factor.",
-          "b": "The Fourier Transform is scaled by the reciprocal of the scaling factor.",
-          "c": "The Fourier Transform is shifted in frequency by the scaling factor.",
-          "d": "The Fourier Transform is unchanged."
-        },
-        "explanations": {
-          "a": "This is incorrect; the scaling in the frequency domain is not straightforward.",
-          "b": "Correct! Frequency scaling in the time domain results in an inverse scaling in the Fourier domain.",
-          "c": "This is incorrect; frequency scaling does not shift the Fourier Transform.",
-          "d": "This is incorrect; scaling in the time domain affects the Fourier Transform."
-        },
-        "correctAnswer": "b",
-        "difficulty": "hard"
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Which condition must be satisfied for the ARMA process to be wide-sense stationary?",
+      "answers": {
+        "a": "The AR coefficients must sum to 1.",
+        "b": "The roots of the AR polynomial must lie outside the unit circle.",
+        "c": "The MA coefficients must be symmetric.",
+        "d": "The autocorrelation function must converge to zero at infinity."
       },
-      {
-        "question": "What is the Fourier Transform of a signal x(t) sampled at a rate  fs?",
-        "answers": {
-          "a": "The Fourier Transform is periodic with period fs.",
-          "b": "The Fourier Transform is continuous with no periodicity.",
-          "c": "The Fourier Transform has a frequency shift by fs.",
-          "d": "The Fourier Transform is a sinc function."
-        },
-        "explanations": {
-          "a": "Correct! The Fourier Transform of a sampled signal is periodic with a period equal to the sampling rate fs.",
-          "b": "This is incorrect; the Fourier Transform of a sampled signal is periodic.",
-          "c": "This is incorrect; there is no frequency shift by fs.",
-          "d": "This is incorrect; the Fourier Transform is not necessarily a sinc function."
-        },
-        "correctAnswer": "a",
-        "difficulty": "hard"
+      "explanations": {
+        "a": "This is not a condition for stationarity but for unit root processes.",
+        "b": "This ensures the ARMA process is stationary.",
+        "c": "Symmetry is not a requirement for stationarity.",
+        "d": "While this is true, it is a consequence, not a condition."
       },
-      {
-        "question": "What happens to the Fourier Transform of a signal when the signal is convolved with a filter in the time domain?",
-        "answers": {
-          "a": "The Fourier Transform of the signal is multiplied by the Fourier Transform of the filter.",
-          "b": "The Fourier Transform of the signal is shifted in frequency.",
-          "c": "The Fourier Transform is unaffected by convolution.",
-          "d": "The Fourier Transform of the signal is convolved with the Fourier Transform of the filter."
-        },
-        "explanations": {
-          "a": "Correct! Convolution in the time domain corresponds to multiplication in the frequency domain.",
-          "b": "This is incorrect; convolution in the time domain does not cause a frequency shift.",
-          "c": "This is incorrect; convolution in the time domain does affect the Fourier Transform.",
-          "d": "This is incorrect; multiplication in the frequency domain corresponds to convolution in the time domain."
-        },
-        "correctAnswer": "a",
-        "difficulty": "hard"
-      }
-    ]
-  }
-  
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does the order of the AR and MA components in an ARMA(p,q) model affect its spectral representation?",
+      "answers": {
+        "a": "The AR order determines the location of poles, while the MA order determines the location of zeros.",
+        "b": "Both AR and MA orders determine the location of zeros only.",
+        "c": "The AR order determines the frequency bandwidth, while the MA order determines the amplitude.",
+        "d": "The AR and MA orders have no effect on the spectral representation."
+      },
+      "explanations": {
+        "a": "This is correct; AR affects poles, and MA affects zeros in the frequency domain.",
+        "b": "AR primarily affects poles, not zeros.",
+        "c": "This is incorrect; orders define the structure, not specific attributes like bandwidth.",
+        "d": "This is incorrect; the orders are critical in spectral representation."
+      },
+      "correctAnswer": "a",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What mathematical property of the autocorrelation matrix ensures the solvability of Yule-Walker equations for AR models?",
+      "answers": {
+        "a": "Positivity.",
+        "b": "Symmetry.",
+        "c": "Toeplitz structure.",
+        "d": "Positive definiteness."
+      },
+      "explanations": {
+        "a": "Positivity alone is not sufficient for solvability.",
+        "b": "Symmetry is a property of the autocorrelation matrix but does not guarantee solvability.",
+        "c": "Toeplitz structure simplifies computations but does not ensure solvability.",
+        "d": "This is correct; positive definiteness ensures a unique solution."
+      },
+      "correctAnswer": "d",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the primary limitation of the Yule-Walker method in estimating ARMA model parameters?",
+      "answers": {
+        "a": "It assumes that the input data is Gaussian distributed.",
+        "b": "It cannot estimate MA coefficients directly.",
+        "c": "It is computationally inefficient for large datasets.",
+        "d": "It is only applicable to non-stationary processes."
+      },
+      "explanations": {
+        "a": "Yule-Walker does not require Gaussian assumptions.",
+        "b": "This is correct; Yule-Walker only estimates AR coefficients.",
+        "c": "Yule-Walker is computationally efficient due to its reliance on autocorrelation.",
+        "d": "It is specifically designed for stationary processes."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Why does the Burg method outperform Yule-Walker equations in certain AR parameter estimations?",
+      "answers": {
+        "a": "It simultaneously estimates AR and MA coefficients.",
+        "b": "It minimizes forward and backward prediction errors.",
+        "c": "It avoids the computation of the autocorrelation function.",
+        "d": "It directly handles non-stationary processes."
+      },
+      "explanations": {
+        "a": "Burg method estimates only AR coefficients.",
+        "b": "This is correct; Burg minimizes errors in both directions.",
+        "c": "Burg still uses autocorrelation but in an implicit manner.",
+        "d": "Burg requires stationarity as much as Yule-Walker."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In ARMA(p,q) modeling, what is the consequence of underestimating the order of the MA component?",
+      "answers": {
+        "a": "The model might produce biased estimates of the AR coefficients.",
+        "b": "The model might overfit the data.",
+        "c": "The model might fail to capture short-term dependencies.",
+        "d": "The model might violate the stationarity condition."
+      },
+      "explanations": {
+        "a": "Bias is more associated with incorrect AR order.",
+        "b": "Underestimation does not lead to overfitting.",
+        "c": "This is correct; the MA component captures short-term dependencies.",
+        "d": "Stationarity is not affected by the MA order."
+      },
+      "correctAnswer": "c",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the primary computational challenge in fitting an ARMA model using the maximum likelihood estimation method?",
+      "answers": {
+        "a": "The need to compute the autocorrelation function.",
+        "b": "The non-linear optimization required for joint AR and MA parameter estimation.",
+        "c": "The inability to handle missing data in the input signal.",
+        "d": "The requirement for the input signal to be strictly Gaussian."
+      },
+      "explanations": {
+        "a": "Autocorrelation computation is not unique to maximum likelihood.",
+        "b": "This is correct; joint estimation of AR and MA parameters involves non-linear optimization.",
+        "c": "While an issue, this is not the primary computational challenge.",
+        "d": "Maximum likelihood does not require strict Gaussianity."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does overfitting manifest in ARMA model validation?",
+      "answers": {
+        "a": "The model exhibits poor predictive performance on unseen data.",
+        "b": "The residuals of the model become uncorrelated.",
+        "c": "The model fits noise in the training data as part of the signal.",
+        "d": "The model's order becomes too low to capture dependencies."
+      },
+      "explanations": {
+        "a": "This is an indirect consequence of overfitting.",
+        "b": "Uncorrelated residuals indicate good model fit.",
+        "c": "This is correct; overfitting models noise as signal.",
+        "d": "Overfitting typically involves too high, not low, order."
+      },
+      "correctAnswer": "c",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the significance of the partial autocorrelation function (PACF) in ARMA model selection?",
+      "answers": {
+        "a": "It identifies the order of the MA component.",
+        "b": "It identifies the order of the AR component.",
+        "c": "It validates the stationarity of the ARMA process.",
+        "d": "It determines the combined order of AR and MA components."
+      },
+      "explanations": {
+        "a": "PACF is used for AR order selection, not MA.",
+        "b": "This is correct; PACF is used to identify AR order.",
+        "c": "Stationarity is determined by other means, not PACF.",
+        "d": "PACF does not determine combined order."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    }
+  ]
+}
