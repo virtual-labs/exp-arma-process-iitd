@@ -68,9 +68,8 @@
     <ul>
         <li>Step 1: Click on "Generate Input Signal 1" or "Generate Input Signal 2" to generate Signal 1 and Signal 2.</li>
 		<li>Step 2: Click on "Generate Combined Signal" to combine the signals based on the defined operation.</li>
-        <li>Step 3: Click on "Generate PSD" to calculate and display the power spectral density (PSD) of the signal / combined signal.</li>
-		<li>Step 4: Click on "Generate Noisy Signal" to add AWGN noise to the signal.</li>
-		<li>Step 5: Click on "Generate PSD for Noisy Signal" to calculate and display the PSD of the noisy signal.</li>
+		<li>Step 3: Click on "Generate Noisy Signal" to add AWGN noise to the signal.</li>
+		<li>Step 4: Click on "Generate PSD for Noisy Signal" to calculate and display the PSD of the noisy signal.</li>
 		<li>The AR model in the Yule-Walker method estimates the power spectral density (PSD) using the autocorrelation values up to lag p for an AR model of order p</li>
 		</ul>
 	</div>
@@ -175,13 +174,6 @@
                 >
                   Generate Combined Signal
                 </button>
-
-				<button
-                  class="button bg-blue-500 text-white rounded-md px-2 py-1 absolute top-[580px] left-[2px]"
-                  onclick="plot2()"
-                >
-                  Generate PSD
-                </button>
 								<button
                   class="button bg-blue-500 text-white rounded-md px-2 py-1 absolute top-[620px] left-[2px]"
                   onclick="generateNoisySignal()"
@@ -221,10 +213,6 @@
 			</div>
 		    <div id = "scrolltopsd1ff" class="flex items-center gap-2 justify-center max-lg:flex-col">
               <div id="plot1" class="w-[600px] h-[450px]"></div>
-			</div>
-			
-					    <div id = "scrolltopsd1fff" class="flex items-center gap-2 justify-center max-lg:flex-col">
-              <div id="plot2" class="w-[600px] h-[450px]"></div>
 			</div>
 
 			<div id = "scrolltonoisy" class="flex items-center gap-2 justify-center max-lg:flex-col">
@@ -1394,7 +1382,7 @@ console.log('x_1', psd.length);
       yaxis: { title: 'PSD (dB/Hz)' },
       legend: { x: 1, xanchor: 'right', y: 1 },
     });
-	document.getElementById('scrolltopsd1fff').scrollIntoView({ behavior: 'smooth' });
+	//document.getElementById('scrolltopsd1fff').scrollIntoView({ behavior: 'smooth' });
 	}
 
 function generatePSD2() {
