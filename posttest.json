@@ -1,0 +1,175 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. What is the primary advantage of using Yule-Walker equations for AR model parameter estimation?",
+      "answers": {
+        "a": "They minimize the mean square error of the signal.",
+        "b": "They allow direct computation of AR coefficients from autocorrelation.",
+        "c": "They provide a closed-form solution for both AR and MA coefficients.",
+        "d": "They reduce the computational complexity of ARMA models."
+      },
+      "explanations": {
+        "a": "Minimizing the mean square error is associated with least squares methods.",
+        "b": "This is correct; Yule-Walker equations rely on autocorrelation for AR coefficient estimation.",
+        "c": "Yule-Walker equations are specifically for AR models, not MA models.",
+        "d": "While computationally efficient, this is not their primary advantage."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "2. Which condition must be satisfied for the ARMA process to be wide-sense stationary?",
+      "answers": {
+        "a": "The AR coefficients must sum to 1.",
+        "b": "The roots of the AR polynomial must lie outside the unit circle.",
+        "c": "The MA coefficients must be symmetric.",
+        "d": "The autocorrelation function must converge to zero at infinity."
+      },
+      "explanations": {
+        "a": "This is not a condition for stationarity but for unit root processes.",
+        "b": "This ensures the ARMA process is stationary.",
+        "c": "Symmetry is not a requirement for stationarity.",
+        "d": "While this is true, it is a consequence, not a condition."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "3. How does the order of the AR and MA components in an ARMA(p,q) model affect its spectral representation?",
+      "answers": {
+        "a": "The AR order determines the location of poles, while the MA order determines the location of zeros.",
+        "b": "Both AR and MA orders determine the location of zeros only.",
+        "c": "The AR order determines the frequency bandwidth, while the MA order determines the amplitude.",
+        "d": "The AR and MA orders have no effect on the spectral representation."
+      },
+      "explanations": {
+        "a": "This is correct; AR affects poles, and MA affects zeros in the frequency domain.",
+        "b": "AR primarily affects poles, not zeros.",
+        "c": "This is incorrect; orders define the structure, not specific attributes like bandwidth.",
+        "d": "This is incorrect; the orders are critical in spectral representation."
+      },
+      "correctAnswer": "a",
+      "difficulty": "hard"
+    },
+    {
+      "question": "4. What mathematical property of the autocorrelation matrix ensures the solvability of Yule-Walker equations for AR models?",
+      "answers": {
+        "a": "Positivity.",
+        "b": "Symmetry.",
+        "c": "Toeplitz structure.",
+        "d": "Positive definiteness."
+      },
+      "explanations": {
+        "a": "Positivity alone is not sufficient for solvability.",
+        "b": "Symmetry is a property of the autocorrelation matrix but does not guarantee solvability.",
+        "c": "Toeplitz structure simplifies computations but does not ensure solvability.",
+        "d": "This is correct; positive definiteness ensures a unique solution."
+      },
+      "correctAnswer": "d",
+      "difficulty": "hard"
+    },
+    {
+      "question": "5. What is the primary limitation of the Yule-Walker method in estimating ARMA model parameters?",
+      "answers": {
+        "a": "It assumes that the input data is Gaussian distributed.",
+        "b": "It cannot estimate MA coefficients directly.",
+        "c": "It is computationally inefficient for large datasets.",
+        "d": "It is only applicable to non-stationary processes."
+      },
+      "explanations": {
+        "a": "Yule-Walker does not require Gaussian assumptions.",
+        "b": "This is correct; Yule-Walker only estimates AR coefficients.",
+        "c": "Yule-Walker is computationally efficient due to its reliance on autocorrelation.",
+        "d": "It is specifically designed for stationary processes."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "6. Why does the Burg method outperform Yule-Walker equations in certain AR parameter estimations?",
+      "answers": {
+        "a": "It simultaneously estimates AR and MA coefficients.",
+        "b": "It minimizes forward and backward prediction errors.",
+        "c": "It avoids the computation of the autocorrelation function.",
+        "d": "It directly handles non-stationary processes."
+      },
+      "explanations": {
+        "a": "Burg method estimates only AR coefficients.",
+        "b": "This is correct; Burg minimizes errors in both directions.",
+        "c": "Burg still uses autocorrelation but in an implicit manner.",
+        "d": "Burg requires stationarity as much as Yule-Walker."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "7. In ARMA(p,q) modeling, what is the consequence of underestimating the order of the MA component?",
+      "answers": {
+        "a": "The model might produce biased estimates of the AR coefficients.",
+        "b": "The model might overfit the data.",
+        "c": "The model might fail to capture short-term dependencies.",
+        "d": "The model might violate the stationarity condition."
+      },
+      "explanations": {
+        "a": "Bias is more associated with incorrect AR order.",
+        "b": "Underestimation does not lead to overfitting.",
+        "c": "This is correct; the MA component captures short-term dependencies.",
+        "d": "Stationarity is not affected by the MA order."
+      },
+      "correctAnswer": "c",
+      "difficulty": "hard"
+    },
+    {
+      "question": "8. What is the primary computational challenge in fitting an ARMA model using the maximum likelihood estimation method?",
+      "answers": {
+        "a": "The need to compute the autocorrelation function.",
+        "b": "The non-linear optimization required for joint AR and MA parameter estimation.",
+        "c": "The inability to handle missing data in the input signal.",
+        "d": "The requirement for the input signal to be strictly Gaussian."
+      },
+      "explanations": {
+        "a": "Autocorrelation computation is not unique to maximum likelihood.",
+        "b": "This is correct; joint estimation of AR and MA parameters involves non-linear optimization.",
+        "c": "While an issue, this is not the primary computational challenge.",
+        "d": "Maximum likelihood does not require strict Gaussianity."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    },
+    {
+      "question": "9. How does overfitting manifest in ARMA model validation?",
+      "answers": {
+        "a": "The model exhibits poor predictive performance on unseen data.",
+        "b": "The residuals of the model become uncorrelated.",
+        "c": "The model fits noise in the training data as part of the signal.",
+        "d": "The model's order becomes too low to capture dependencies."
+      },
+      "explanations": {
+        "a": "This is an indirect consequence of overfitting.",
+        "b": "Uncorrelated residuals indicate good model fit.",
+        "c": "This is correct; overfitting models noise as signal.",
+        "d": "Overfitting typically involves too high, not low, order."
+      },
+      "correctAnswer": "c",
+      "difficulty": "hard"
+    },
+    {
+      "question": "10. What is the significance of the partial autocorrelation function (PACF) in ARMA model selection?",
+      "answers": {
+        "a": "It identifies the order of the MA component.",
+        "b": "It identifies the order of the AR component.",
+        "c": "It validates the stationarity of the ARMA process.",
+        "d": "It determines the combined order of AR and MA components."
+      },
+      "explanations": {
+        "a": "PACF is used for AR order selection, not MA.",
+        "b": "This is correct; PACF is used to identify AR order.",
+        "c": "Stationarity is determined by other means, not PACF.",
+        "d": "PACF does not determine combined order."
+      },
+      "correctAnswer": "b",
+      "difficulty": "hard"
+    }
+  ]
+}
