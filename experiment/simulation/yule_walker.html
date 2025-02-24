@@ -6,231 +6,227 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <title>Virtual Labs</title>
-    <style>
-	    .container {
-            display: flex;
-			    height: 100vh; /* Full viewport height */
-        width: 100vw; /* Full viewport width */
-        }
-		.left-half {
-            width: 40vw;
-			}
-
-        .right-half {
-            width: 60vw;
-		    position: relative;
-		    overflow: auto;
-        }
-		
-/* Custom table styles */
-.custom-table {
-    width: auto;
-    border-collapse: collapse;
-    margin-top: 0px;
-    margin-bottom: 20px;
-}
-
-/* Header and cell styles */
-.custom-table th,
-.custom-table td {
-    border: 1px solid black;  /* Adds a solid black border */
-    fft1: 5px;  /* Slightly larger fft1 for better spacing */
-    text-align: center;
-    font-size: 17px;  /* Set font size for headers and cells */
-}
-
-/* Header-specific styles */
-.custom-table th {
-    width: auto;  /* Sets the width to auto to fit content */
-    background-color: #f2f2f2;  /* Light grey background for header */
-    font-weight: bold;  /* Bold text for headers */
-    font-size: 18px;  /* Larger font size for headers */
-}
-
-/* Alternate row styling for better readability */
-.custom-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;  /* Slightly darker background for even rows */
-}
-
-/* Table hover effect */
-.custom-table tbody tr:hover {
-    background-color: #e6f7ff;  /* Light blue background on row hover */
-}
-
-
-    </style>
   </head>
   <body>
     <!-- sidebar and body -->
 	    <!-- sidebar and body -->
 	<div id = "instructions">
     <h1>Instructions for Spectral Estimation using AR-Modeled Yule-Walker Method</h1>
-    <ul>
-        <li>Step 1: Click on "Generate Input Signal 1" or "Generate Input Signal 2" to generate Signal 1 and Signal 2.</li>
-		<li>Step 2: Click on "Generate Combined Signal" to combine the signals based on the defined operation.</li>
-		<li>Step 3: Click on "Generate Noisy Signal" to add AWGN noise to the signal.</li>
-		<li>Step 4: Click on "Generate PSD for Noisy Signal" to calculate and display the PSD of the noisy signal.</li>
-		<li>The AR model in the Yule-Walker method estimates the power spectral density (PSD) using the autocorrelation values up to lag p for an AR model of order p</li>
-		</ul>
+<ul>
+    <li>Step 1: Click on "Generate Input Signal" to generate the signal.</li>
+    <li>Step 2: Enter the input frequency value in Hz in the parameters section.</li>
+    <li>Step 3: Select the base signal from the dropdown menu.</li>
+    <li>Step 4: Choose an operation such as addition, multiplication, or convolution from the dropdown menu.</li>
+    <li>Step 5: Add AWGN noise by entering the SNR value (in dB) in the input field.</li>
+    <li>Step 6: Click the "Simulate" button to run the simulation.</li>
+    <li>Step 7: Reset the simulator by clicking the "Reset Simulator" button.</li>
+</ul>
 	</div>
 	<hr/>
-	<br>
-    <div class="flex min-h-[10vh]">
-      <div class="px-6 pb-6 mt-1 flex-1">
-        <div class="">
-          <div class="flex flex-col justify-center">
-		  <div class="flex max-lg:flex-col gap-x-12 gap-y-2 mt-2">
-			<div class="flex items-center justify-center gap-1 mt-2">
-	    <!-- Dropdown for user input selection -->
-    <label for="masterInputSelector">Inputs / Operations:</label>
+	
+    <!-----------------------------framework starts-------------------------------->
+	    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+        }
+
+        .containerff {
+            display: flex;
+            gap: 2em;
+            margin-bottom: 2em;
+        }
+
+        .box {
+            border: 0.2em solid #333;
+            padding: 1em;
+            text-align: center;
+            flex: 1;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.3s ease, height 0.3s ease;
+        }
+
+        .four-boxes {
+            display: flex;
+            gap: 2em;
+            margin-top: 2em;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .dropdown, .input-box {
+            margin-top: 1em;
+            text-align: left;
+        }
+
+select, input {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 2px solid black; /* Adds a solid black border */
+    border-radius: 4px; /* Optional: Rounds the corners */
+}
+
+    </style>
+	<br/>
+	<br/>
+    <div class="containerff">
+        <div class="box">
+            <button 
+			class="button bg-blue-500 text-white rounded-md px-2 py-1"
+			id="triggerButton" aria-expanded="false">Generate Input Signal</button>
+			<div id="inputSignal1" class="w-[30em] h-[20em]"></div>
+        </div>
+
+        <div class="box" id="inputFieldsBox">
+		<p>Parameters</p>
+		<br>
+		<label for = "messageFrequency">Input Signal Frequency (Hz)</label>
+            <input id = "messageFrequency" type="text" value="50">
+			<label for="inputN">AR Model order(s):</label>
+    <input type="text" id="inputN" value="10,15,20"/>
+			<!--
+            <input type="text" placeholder="Input 2">
+            <input type="text" placeholder="Input 3">
+			-->
+        </div>
+
+        <div class="box">
+            <p>Output</p>
+						<div id="arCoefficientsBox" style="border: 1px solid black; padding: 10px; margin-bottom: 10px; font-size: 14px; white-space: pre-wrap;"></div>
+
+			<div id="psdPlot2" class="w-[40em] h-[20em]"></div>
+        </div>
+    </div>
+
+    <div class="four-boxes hidden" id="additionalBoxes">
+        <div class="box" id="dropdownBox1">
+            <p>Base Signal</p>
+            <div class="dropdown">
+    <select id="inputSelector" onchange="handleInputChange()">
+        <option value="" disabled selected>Select an input</option>
+        <option value="sine" selected>Sine Wave</option>
+        <option value="cosine">Cosine Wave</option>
+		<!--
+		<option value="rectangular">Rectangular Wave</option>
+		-->
+    </select>
+            </div>
+        </div>
+
+        <div class="box" id="dropdownBox2">
+            <p>Operations</p>
+            <div class="dropdown">
     <select id="masterInputSelector" onchange="handleInputChange()">
         <option value="" disabled selected>Select an operation</option>
-		<option value="fourierDifferentiation"  selected>Sine / Cosine Wave</option>
+		<option value="fourierDifferentiation"  selected>None</option>
         <option value="addition">Addition</option>
         <option value="subtraction">Subtraction</option>
 		<option value="multiplication">Multiplication</option>
         <option value="convolution">Convolution</option>
     </select>
-			</div>
-			</div>
-			<br/>
-            <div class="flex max-lg:flex-col gap-x-12 gap-y-2 mt-2">
-			<div class="flex items-center justify-center gap-1 mt-2">
+	<br/>
+	<br/>
+			<div>
 	    <!-- Dropdown for user input selection -->
-    <label for="inputSelector">Input signal:</label>
-    <select id="inputSelector" onchange="handleInputChange()">
-        <option value="" disabled selected>Select an input</option>
-        <option value="sine" selected>Sine Wave</option>
-        <option value="cosine">Cosine Wave</option>
-		<option value="rectangular">Rectangular Wave</option>
-    </select>
-			</div>
-			
-		<div class="flex items-center justify-center gap-1 mt-2">
-	    <!-- Dropdown for user input selection -->
-    <label for="inputSelector2">Input signal 2:</label>
+    <label for="inputSelector2">Add another Signal:</label>
     <select id="inputSelector2" onchange="handleInputChange()">
 	    <option value="" disabled selected>Select an input</option>
         <option value="sine" selected>Sine Wave</option>
         <option value="cosine">Cosine Wave</option>
+		<!--
 		<option value="rectangular">Rectangular Wave</option>
+		-->
     </select>
 			</div>
-
-              <div class="flex items-center justify-center gap-1 mt-2">
-        <label for="messageFrequency">Input Frequency (Hz):</label>
-<input class="input-field border border-black px-2 py-1 rounded-sm" type="number" id="messageFrequency" value="50">
-                </div>
-			              <div class="flex items-center justify-center gap-1 mt-2">
-        <label for="carrierFrequency">Input Frequency 2 (Hz):</label>
+			
+			<br/>
+			
+			<div>
+        <label for="carrierFrequency">Input Frequency (Hz):</label>
 <input class="input-field border border-black px-2 py-1 rounded-sm" type="number" id="carrierFrequency" value="100">
                 </div>
-				              <div class="flex items-center justify-center gap-1 mt-2">
-        <label for="samplingFrequency">Sampling Frequency (Hz):</label>
-<input class="input-field border border-black px-2 py-1 rounded-sm" type="number" id="samplingFrequency" value="1000">
-                </div>
-              <div class="flex items-center justify-center gap-1 mt-2">
-        <label for="snrInput">SNR (in dB):</label>
-    <input class="input-field border border-black px-2 py-1 rounded-sm" type="number" id="snrInput" value="20"/>
-              </div>
-              <div class="flex items-center justify-center gap-1 mt-2">
-        <label for="inputN">AR Model order(s):</label>
-    <input class="input-field border border-black px-2 py-1 rounded-sm" type="text" id="inputN" value="10,15,20"/>
-              </div>
-			  
-			 <br/>
-            </div>
-            </div>
+				<div id="inputSignal2" class="w-[30em] h-[20em]"></div>			
             </div>
         </div>
-      </div>
+
+        <div class="box" id="inputBox1">
+            <p>AWGN Noise</p>
+            <div class="input-box">
+			    <label for="snrInput">SNR (in dB):</label>
+                <input id="snrInput" type="text" value="10">
+            </div>
+		    <div id="plot12" class="w-[30em] h-[20em]"></div>
+        </div>
+
+        <div class="box" id="inputBox2">
+		<!--
+            <p>Input Box 2</p>
+            <div class="input-box">
+                <input type="text" placeholder="Input 2">
+		-->
+		<button 
+		class="button bg-blue-500 text-white rounded-md px-2 py-1"
+		onclick = "simulateff()">Simulate</button>
+		<br><br>
+		<button 
+		class="button bg-green-500 text-white rounded-md px-2 py-1"
+		onclick = "window.location.reload(true);">Reset Simulator</button>
+            </div>
+        </div>
     </div>
-	<hr/>
+
+    <script>
+        const triggerButton = document.getElementById('triggerButton');
+        const additionalBoxes = document.getElementById('additionalBoxes');
+
+        triggerButton.addEventListener('click', () => {
+            const isHidden = additionalBoxes.classList.toggle('hidden');
+            triggerButton.setAttribute('aria-expanded', !isHidden);
+        });
+    </script>
 	
-	<div class = "container">
-	<div class = "left-half">
-	          <div class="flex gap-1">
-              <div class="flex-1 flex flex-col items-center">
-                <div class="w-full">
-				<br><br><br><br>
-<! img here>
+    <!-------------------------------framework ends--------------------------------->	
 				<button
-                  class="button bg-blue-500 text-white rounded-md px-2 py-1 absolute top-[420px] left-[2px]"
                   onclick="inputSignal1()"
                 >
-                  Generate Input Signal
                 </button>
 			    <button
 				  id = "hideButton1"
-                  class="button bg-blue-500 text-white rounded-md px-2 py-1 absolute top-[460px] left-[2px]"
                   onclick="generateInputSignal2()"
                 >
-                  Generate Input Signal 2
                 </button>
 				<button
 				  id = "hideButton"
-                  class="button bg-blue-500 text-white rounded-md px-2 py-1 absolute top-[500px] left-[2px]"
-                  onclick="plot0()"
+                  onclick="simulation()"
                 >
-                  Generate Combined Signal
                 </button>
 								<button
-                  class="button bg-blue-500 text-white rounded-md px-2 py-1 absolute top-[620px] left-[2px]"
                   onclick="generateNoisySignal()"
                 >
-                  Generate Noisy Signal
                 </button>
 				
 			    <button
-                  class="button bg-blue-500 text-white rounded-md px-2 py-1 absolute top-[660px] left-[2px]"
                   onclick="generatePSD2()"
                 >
-                  Generate PSD for Noisy Signal
                 </button>
-				
-												<button
-                  class="button bg-blue-500 text-white rounded-md px-2 py-1 absolute top-[540px] left-[2px]"
-                  onclick="plot1()"
-                >
-                  Generate AR Filtered
-                </button>
-				
-              </div>
-              </div>
-			  </div>
-	</div>
 
-				
-	<div class = "right-half">
-		            <div id = "scrolltoinputsignal1" class="flex items-center gap-2 justify-center max-lg:flex-col">
-              <div id="inputSignal1" class="w-[600px] h-[450px]"></div>
-			</div>
-		            <div id = "scrolltoinputsignal2" class="flex items-center gap-2 justify-center max-lg:flex-col">
-              <div id="inputSignal2" class="w-[600px] h-[450px]"></div>
-			</div>
 	            <div id = "scrolltomessage" class="flex items-center gap-2 justify-center max-lg:flex-col">
-              <div id="plot11" class="w-[600px] h-[450px]"></div>
-			</div>
-		    <div id = "scrolltopsd1ff" class="flex items-center gap-2 justify-center max-lg:flex-col">
-              <div id="plot1" class="w-[600px] h-[450px]"></div>
-			</div>
-
-			<div id = "scrolltonoisy" class="flex items-center gap-2 justify-center max-lg:flex-col">
-              <div id="plot12" class="w-[600px] h-[450px]"></div>
-			</div>
-			<div id = "scrolltopsd2" class="flex items-center gap-2 justify-center max-lg:flex-col">
-                <div id="psdPlot2" class="w-[600px] h-[450px]"></div>
-              </div>
-	</div>
+              <div id="plot11"></div>
 	
-</div>
 	
 <script>
     // Function to check if the sampling frequency is higher than the input frequencies
     function checkFrequencies2() {
         const messageFreq = parseFloat(document.getElementById('messageFrequency').value);
         const carrierFreq = parseFloat(document.getElementById('carrierFrequency').value);
-        const samplingFreq = parseFloat(document.getElementById('samplingFrequency').value);
+        const samplingFreq = (messageFreq > carrierFreq) ? messageFreq * 10 : carrierFreq * 10;
 
         // Check if the sampling frequency is less than or equal to either the message or carrier frequency
         if (samplingFreq <= 2*messageFreq || samplingFreq <= 2*carrierFreq) {
@@ -445,6 +441,12 @@ function solveToeplitz(toeplitzMatrix, Rxy) {
     // Conjugate and scale the output, then take only the real part
     return fftResult.map(x => x.re / N);
   }
+  
+          const rr = {
+            showLink: false,             
+            displaylogo: false,           
+            modeBarButtonsToRemove: ['sendDataToCloud'] 
+        };
 
         let fs;    // Sampling frequency
 		let fm;
@@ -456,7 +458,6 @@ function solveToeplitz(toeplitzMatrix, Rxy) {
         let x;
 		//let y, y2, y3;
 		let label, label2;
-		let y3, tt;
 		inputSignal2 = document.getElementById('inputSignal2');
 		plot11 = document.getElementById('plot11');
 function handleInputChange(fs, fm, fc) {
@@ -665,9 +666,9 @@ switch (selectedMasterInput) {
     const fftResult2 = fft(inputArray2);
 	
 	///////////////////////////////////////////////
-	let L1 = parseInt(document.getElementById('samplingFrequency').value);  // Sampling frequency
+	let L1 = (messageFreq > carrierFreq) ? messageFreq * 10 : carrierFreq * 10;	  // Sampling frequency
     L1 = nextPowerOfTwo(L1);
-	let Fs1 = parseInt(document.getElementById('samplingFrequency').value);  // Sampling frequency
+	let Fs1 = (messageFreq > carrierFreq) ? messageFreq * 10 : carrierFreq * 10;	  // Sampling frequency
     Fs1 = nextPowerOfTwo(Fs1);
 	    // Frequency vector and shifted frequency
     const freq1 = Array.from({length: L1}, (_, i) => i * Fs1 / L1);
@@ -711,9 +712,9 @@ switch (selectedMasterInput) {
 
 
 function inputSignal1() {
-    let fs = parseInt(document.getElementById('samplingFrequency').value);
     let fm = parseInt(document.getElementById('messageFrequency').value);
     let fc = parseInt(document.getElementById('carrierFrequency').value);
+	let fs = (fm > fc) ? fm * 10 : fc * 10;
 
     let { y, y2, y3 } = handleInputChange(fs, fm, fc);
     if (!y || !y2 || !y3) return;  // Ensure valid signals
@@ -721,15 +722,15 @@ function inputSignal1() {
     // Plot y2 and y3 on the same plot
     Plotly.newPlot('inputSignal1', [
         { x: Array.from({ length: fs }, (_, i) => i / fs), y: y, mode: 'lines', name: 'Signal 1' }
-    ], { title: 'Input Signal' });
+    ], { title: 'Input Signal' }, rr);
 
-    document.getElementById('scrolltoinputsignal1').scrollIntoView({ behavior: 'smooth' });
+    //document.getElementById('scrolltoinputsignal1').scrollIntoView({ behavior: 'smooth' });
 }
 		
 function generateInputSignal2() {
-    let fs = parseInt(document.getElementById('samplingFrequency').value);
     let fm = parseInt(document.getElementById('messageFrequency').value);
     let fc = parseInt(document.getElementById('carrierFrequency').value);
+	let fs = (fm > fc) ? fm * 10 : fc * 10;
 
     let { y, y2, y3 } = handleInputChange(fs, fm, fc);
     if (!y || !y2 || !y3) return;  // Ensure valid signals
@@ -737,9 +738,9 @@ function generateInputSignal2() {
     // Plot y2 and y3 on the same plot
     Plotly.newPlot('inputSignal2', [
         { x: Array.from({ length: fs }, (_, i) => i / fs), y: y2, mode: 'lines', name: 'Signal 1' }
-    ], { title: 'Input Signal 2' });
+    ], { title: 'Input Signal 2' }, rr);
 
-    document.getElementById('scrolltoinputsignal2').scrollIntoView({ behavior: 'smooth' });
+    //document.getElementById('scrolltoinputsignal2').scrollIntoView({ behavior: 'smooth' });
 }
 		
 		        function simulation() {
@@ -762,16 +763,16 @@ function generateInputSignal2() {
             // Plot original message signal
             Plotly.newPlot('plot11', [
                 { x: Array.from({ length: fs }, (_, i) => i / fs), y: y3, mode: 'lines', name: 'Original Message Signal' }
-            ], { title: 'Combined Signal' });
+            ], { title: 'Combined Signal' }, rr);
 				document.getElementById('scrolltomessage').scrollIntoView({ behavior: 'smooth' });
         }
 
         
 	function generateNoisySignal() {
-            let fs = parseInt(document.getElementById('samplingFrequency').value);			
-			let tt = Array.from({ length: fs }, (_, i) => i / fs);
             let fm = parseInt(document.getElementById('messageFrequency').value);
             let fc = parseInt(document.getElementById('carrierFrequency').value);
+			let fs = (fm > fc) ? fm * 10 : fc * 10;		
+			let tt = Array.from({ length: fs }, (_, i) => i / fs);
 
     let { y, y2, y3 } = handleInputChange(fs, fm, fc);
     if (!y || !y2 || !y3) return;  // Ensure valid signals
@@ -784,8 +785,8 @@ function generateInputSignal2() {
 
 		        Plotly.newPlot('plot12', [
             { x: tt, y: x, mode: 'lines', name: 'Noisy Signal' },
-        ], { title: 'Noisy Signal' });
-			document.getElementById('scrolltonoisy').scrollIntoView({ behavior: 'smooth' });
+        ], { title: 'Noisy Signal' }, rr);
+			//document.getElementById('scrolltonoisy').scrollIntoView({ behavior: 'smooth' });
     }
 
 
@@ -980,7 +981,7 @@ console.log(computeWindow(windowType, N)); // Logs the computed window values fo
                     title: 'Power/Frequency (dB/Hz)'
                     //range: [-100, 10] // Specify your desired y-axis range here
                 }
-            });
+            }, rr);
 			document.getElementById('scrolltopsd1').scrollIntoView({ behavior: 'smooth' });
 
             // If x is not null, calculate and plot the PSD for the noisy signal
@@ -1004,11 +1005,165 @@ console.log(computeWindow(windowType, N)); // Logs the computed window values fo
                         title: 'Power/Frequency (dB/Hz)'
                         //range: [-120, 10] // Specify your desired y-axis range here
                     }
-                });
+                }, rr);
 			document.getElementById('scrolltopsd2').scrollIntoView({ behavior: 'smooth' });
             }
         }
 
+   // FFT implementation
+    function fft(signal) {
+      const N = signal.length;
+      if (N <= 1) return signal.map((val) => ({ re: val, im: 0 }));
+
+      const even = fft(signal.filter((_, i) => i % 2 === 0));
+      const odd = fft(signal.filter((_, i) => i % 2 !== 0));
+      const T = Array(N / 2).fill(0).map((_, k) => {
+        const angle = (-2 * Math.PI * k) / N;
+        return {
+          re: Math.cos(angle) * odd[k].re - Math.sin(angle) * odd[k].im,
+          im: Math.cos(angle) * odd[k].im + Math.sin(angle) * odd[k].re,
+        };
+      });
+
+      return Array(N).fill(0).map((_, k) =>
+        k < N / 2
+          ? { re: even[k].re + T[k].re, im: even[k].im + T[k].im }
+          : { re: even[k - N / 2].re - T[k - N / 2].re, im: even[k - N / 2].im - T[k - N / 2].im }
+      );
+    }
+
+    // Periodogram implementation
+	fm = parseInt(document.getElementById('messageFrequency').value);
+    fc = parseInt(document.getElementById('carrierFrequency').value);	
+	let Nfft = (fm > fc) ? fm * 10 : fc * 10;
+	Nfft = nextPowerOfTwo(Nfft);
+    function periodogram(signal) {
+      const paddedSignal = Array(Nfft).fill(0).map((_, i) => (i < signal.length ? signal[i] : 0));
+      const fftResult = fft(paddedSignal);
+      return fftResult.map(({ re, im }) => (re * re + im * im) / signal.length);
+    }
+
+    // AR parameter estimation using Yule-Walker equations
+    function aryule(x, order) {
+      const autoCorr = Array(order + 1).fill(0).map((_, lag) =>
+        x.slice(lag).reduce((sum, xi, i) => sum + xi * x[i], 0)
+      );
+      const R = Array(order).fill(0).map((_, i) =>
+        Array(order).fill(0).map((_, j) => autoCorr[Math.abs(i - j)])
+      );
+      const r = autoCorr.slice(1, order + 1);
+
+      // Solve linear equations for AR coefficients
+      const a = solveLinearSystem(R, r).map((v) => -v);
+      const p = autoCorr[0] + a.reduce((sum, ai, i) => sum + ai * autoCorr[i + 1], 0);
+      return { a: [1, ...a], p };
+    }
+
+    // Linear system solver
+    function solveLinearSystem(A, b) {
+      const n = A.length;
+      const x = Array(n).fill(0);
+      const LU = A.map((row) => [...row]);
+      const y = [...b];
+
+      // LU Decomposition
+      for (let k = 0; k < n; k++) {
+        for (let i = k + 1; i < n; i++) {
+          const factor = LU[i][k] / LU[k][k];
+          for (let j = k; j < n; j++) LU[i][j] -= factor * LU[k][j];
+          y[i] -= factor * y[k];
+        }
+      }
+
+      // Back substitution
+      for (let i = n - 1; i >= 0; i--) {
+        x[i] = y[i];
+        for (let j = i + 1; j < n; j++) x[i] -= LU[i][j] * x[j];
+        x[i] /= LU[i][i];
+      }
+
+      return x;
+    }
+function generatePSD2() {
+            let fm = parseInt(document.getElementById('messageFrequency').value);
+            let fc = parseInt(document.getElementById('carrierFrequency').value);
+			let fs = (fm > fc) ? fm * 10 : fc * 10;				
+			fs = nextPowerOfTwo(fs);
+			let tt = Array.from({ length: fs }, (_, i) => i / fs);
+
+    let { y, y2, y3 } = handleInputChange(fs, fm, fc);
+    if (!y || !y2 || !y3) return;  // Ensure valid signals
+	let N;
+	let ff = [1,2,3];
+	            // User input for SNR in dB
+            let snr_db = parseFloat(document.getElementById('snrInput').value);
+            let snr_linear = Math.pow(10, snr_db / 10); // Convert SNR to linear scale
+
+            // Calculate signal power and noise variance
+			let x_1 = y3;
+            let signal_power = x_1.reduce((sum, value) => sum + Math.pow(value, 2), 0) / fs;
+            let noise_variance = signal_power / snr_linear;
+
+            // Generate noisy signal
+            let x_2 = x_1.map(value => value + Math.sqrt(noise_variance) * randn());
+    let psd = periodogram(x_2);
+
+      // Get the input field value
+      let inputValue = document.getElementById('inputN').value;
+
+      // Convert the input to an array
+      N = inputValue
+        .split(',') // Split by comma
+        .map(val => val.trim()) // Trim whitespace
+        .filter(val => val !== '') // Remove empty values
+        .map(Number); // Convert to numbers
+//console.log('x_1', psd.length);
+    let psdTraces = [{
+      x: Array.from({ length: (psd.length/2) }, (_, i) => i / psd.length).map((a)=>a*fs), // Normalized frequency
+      y: psd.map((p) => 10 * Math.log10(p)).slice(0, (psd.length/2)).map((a) => a+(10 * Math.log10(6.2832 / fs))),
+      mode: 'lines',
+      name: 'PSD (using simple periodogram)',
+    }];
+	
+    let arText = "<strong>Estimated AR Coefficients (N represents the order):</strong><br>"; // Format text for box
+    N.forEach((n) => {
+      const { a, p } = aryule(x_2, n);
+	    // Print AR coefficients for each N
+  //console.log(`AR Coefficients for N=${n}:`, a);
+  arText += `N=${n}: [${a.map(v => v.toFixed(4)).join(", ")}]<br>`; // Format for display
+      const H = Array(Nfft).fill(0).map((_, i) => {
+        const omega = (2 * Math.PI * i) / Nfft;
+        const numerator = Math.sqrt(p);
+        let denominator = { re: 0, im: 0 };
+        a.forEach((ai, j) => {
+          denominator.re += ai * Math.cos(-omega * j);
+          denominator.im += ai * Math.sin(-omega * j);
+        });
+        return numerator / Math.sqrt(denominator.re ** 2 + denominator.im ** 2);
+      });
+      const psdModel = H.map((h) => 20 * Math.log10(h / (2 * Math.PI)));
+      psdTraces.push({
+        x: Array.from({ length: (H.length/2) }, (_, i) => i / H.length).map((a)=>a*fs),
+        y: psdModel.slice(0,(H.length/2)).map((a) => a+(10 * Math.log10(6.2832 / fs))),
+        mode: 'lines',
+        name: `PSD of AR model order N=${n}`,
+      });
+    });
+
+    // **Update the AR Coefficients Box**
+    document.getElementById('arCoefficientsBox').innerHTML = arText;
+
+    // **Plotly Layout**
+    let layout = {
+        title: 'PSD Estimation for Noisy Signal',
+        xaxis: { title: 'Frequency (Hz)' }, //range: [0, ((fs/10)+fm+5)]
+        yaxis: { title: 'PSD (dB/Hz)' },
+        legend: { x: 1, xanchor: 'right', y: 1 },
+    };
+
+    Plotly.newPlot('psdPlot2', psdTraces, layout, rr);
+    //document.getElementById('scrolltopsd2').scrollIntoView({ behavior: 'smooth' });
+}
 //////////////////////////////Phase Info///////////////////
         // Function to zero-pad the array to the nearest power of 2
         function padToPowerOf2(arr) {
@@ -1151,7 +1306,7 @@ if (inputSelector1 === 'rectangular' || inputSelector2 === 'rectangular') {
             title: 'Phase Plot',
             xaxis: { title: 'Frequency (Hz)' },
             yaxis: { title: 'Phase (radians)' }
-        });
+        }, rr);
 		    document.getElementById('scrolltophaseplot').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -1176,278 +1331,11 @@ if (inputSelector1 === 'rectangular' || inputSelector2 === 'rectangular') {
     }
 	hideElements();
 	
-	///////////////////////////////////////////////////////////////////////////////////
-	  		function nextPowerOfTwo(n) {
-			if (n < 1) return 1; // Handle cases where n is less than 1
-			let power = 1;
-			while (power < n) {
-				power *= 2; // Multiply by 2 until we exceed n
-			}
-			return power;
-		}
-    // Model parameters
-
-    let a = [1, 0.9, 0.6, 0.5];
-
-function plot0() {
-            let fs = parseInt(document.getElementById('samplingFrequency').value);  
-
-            let fm = parseInt(document.getElementById('messageFrequency').value);
-            let fc = parseInt(document.getElementById('carrierFrequency').value);
-			    let t = Array.from({ length: fs }, (_, i) => i * 1/fs); // Time vector (0:0.001:1-0.001)
-
-    let { y, y2, y3 } = handleInputChange(fs, fm, fc);
-    if (!y || !y2 || !y3) return;  // Ensure valid signals
-	    // Generate the input signal
-    let xOriginal = y3; //t.map((ti) => Math.sin(2 * Math.PI * 50 * ti)); // Sinusoidal signal
-
-    // Plot the AR data
-    Plotly.newPlot('plot11', [
-      {
-        x: t,
-        y: xOriginal,
-        mode: 'lines',
-        name: 'Original Message signal',
-      },
-    ], {
-      title: 'Combined Signal',
-      xaxis: { title: 'Sample index' },
-      yaxis: { title: 'Value' },
-    });
-	document.getElementById('scrolltomessage').scrollIntoView({ behavior: 'smooth' });
-}
-    // Apply AR filter (equivalent to MATLAB's filter function)
-    function applyFilter(b, a, x) {
-      const y = Array(x.length).fill(0);
-      for (let n = 0; n < x.length; n++) {
-        let acc = b.reduce((sum, coeff, j) => (n - j >= 0 ? sum + coeff * x[n - j] : sum), 0);
-        acc -= a.slice(1).reduce((sum, coeff, j) => (n - j - 1 >= 0 ? sum + coeff * y[n - j - 1] : sum), 0);
-        y[n] = acc / a[0];
-      }
-      return y;
-    }
-
-    let x_1;
-function plot1() {
-            let fs = parseInt(document.getElementById('samplingFrequency').value);  
-
-            let fm = parseInt(document.getElementById('messageFrequency').value);
-            let fc = parseInt(document.getElementById('carrierFrequency').value);
-			    let t = Array.from({ length: fs }, (_, i) => i * 1/fs); // Time vector (0:0.001:1-0.001)
-
-    let { y, y2, y3 } = handleInputChange(fs, fm, fc);
-    if (!y || !y2 || !y3) return;  // Ensure valid signals
-	    // Generate the input signal
-    let xOriginal = y3;
-    x_1 = applyFilter([1], a, xOriginal); // Filtered data
-
-    // Plot the AR data
-    Plotly.newPlot('plot1', [
-      {
-        x: Array.from({ length: (fs) }, (_, i) => i / fs),//.map((a)=>a/fs),//tt,
-        y: x_1,
-        mode: 'lines',
-        name: 'AR(3) Data',
-      },
-    ], {
-      title: 'Signal from AR process',
-      xaxis: { title: 'Sample index' },
-      yaxis: { title: 'Value' },
-    });
-	document.getElementById('scrolltopsd1ff').scrollIntoView({ behavior: 'smooth' });
-}
-
-    // FFT implementation
-    function fft(signal) {
-      const N = signal.length;
-      if (N <= 1) return signal.map((val) => ({ re: val, im: 0 }));
-
-      const even = fft(signal.filter((_, i) => i % 2 === 0));
-      const odd = fft(signal.filter((_, i) => i % 2 !== 0));
-      const T = Array(N / 2).fill(0).map((_, k) => {
-        const angle = (-2 * Math.PI * k) / N;
-        return {
-          re: Math.cos(angle) * odd[k].re - Math.sin(angle) * odd[k].im,
-          im: Math.cos(angle) * odd[k].im + Math.sin(angle) * odd[k].re,
-        };
-      });
-
-      return Array(N).fill(0).map((_, k) =>
-        k < N / 2
-          ? { re: even[k].re + T[k].re, im: even[k].im + T[k].im }
-          : { re: even[k - N / 2].re - T[k - N / 2].re, im: even[k - N / 2].im - T[k - N / 2].im }
-      );
-    }
-
-    // Periodogram implementation
-	let Nfft = parseInt(document.getElementById('samplingFrequency').value);
-	Nfft = nextPowerOfTwo(Nfft);
-    function periodogram(signal) {
-      const paddedSignal = Array(Nfft).fill(0).map((_, i) => (i < signal.length ? signal[i] : 0));
-      const fftResult = fft(paddedSignal);
-      return fftResult.map(({ re, im }) => (re * re + im * im) / signal.length);
-    }
-
-    // AR parameter estimation using Yule-Walker equations
-    function aryule(x, order) {
-      const autoCorr = Array(order + 1).fill(0).map((_, lag) =>
-        x.slice(lag).reduce((sum, xi, i) => sum + xi * x[i], 0)
-      );
-      const R = Array(order).fill(0).map((_, i) =>
-        Array(order).fill(0).map((_, j) => autoCorr[Math.abs(i - j)])
-      );
-      const r = autoCorr.slice(1, order + 1);
-
-      // Solve linear equations for AR coefficients
-      const a = solveLinearSystem(R, r).map((v) => -v);
-      const p = autoCorr[0] + a.reduce((sum, ai, i) => sum + ai * autoCorr[i + 1], 0);
-      return { a: [1, ...a], p };
-    }
-
-    // Linear system solver
-    function solveLinearSystem(A, b) {
-      const n = A.length;
-      const x = Array(n).fill(0);
-      const LU = A.map((row) => [...row]);
-      const y = [...b];
-
-      // LU Decomposition
-      for (let k = 0; k < n; k++) {
-        for (let i = k + 1; i < n; i++) {
-          const factor = LU[i][k] / LU[k][k];
-          for (let j = k; j < n; j++) LU[i][j] -= factor * LU[k][j];
-          y[i] -= factor * y[k];
-        }
-      }
-
-      // Back substitution
-      for (let i = n - 1; i >= 0; i--) {
-        x[i] = y[i];
-        for (let j = i + 1; j < n; j++) x[i] -= LU[i][j] * x[j];
-        x[i] /= LU[i][i];
-      }
-
-      return x;
-    }
-
-function plot2() {
-    // Compute and plot the PSD Estimation
-		fs = parseInt(document.getElementById('samplingFrequency').value);
-	fs = nextPowerOfTwo(fs);
-	let N;
-	let ff = [1,2,3];
-    let psd = periodogram(x_1);
-
-      // Get the input field value
-      let inputValue = document.getElementById('inputN').value;
-
-      // Convert the input to an array
-      N = inputValue
-        .split(',') // Split by comma
-        .map(val => val.trim()) // Trim whitespace
-        .filter(val => val !== '') // Remove empty values
-        .map(Number); // Convert to numbers
-console.log('x_1', psd.length);
-    let psdTraces = [{
-      x: Array.from({ length: (psd.length/2) }, (_, i) => i / psd.length).map((a)=>a*fs), // Normalized frequency
-      y: psd.map((p) => 10 * Math.log10(p)).slice(0, (psd.length/2)).map((a) => a+(10 * Math.log10(6.2832 / fs))),
-      mode: 'lines',
-      name: 'PSD (using simple periodogram)',
-    }];
-
-    N.forEach((n) => {
-      const { a, p } = aryule(x_1, n);
-      const H = Array(Nfft).fill(0).map((_, i) => {
-        const omega = (2 * Math.PI * i) / Nfft;
-        const numerator = Math.sqrt(p);
-        let denominator = { re: 0, im: 0 };
-        a.forEach((ai, j) => {
-          denominator.re += ai * Math.cos(-omega * j);
-          denominator.im += ai * Math.sin(-omega * j);
-        });
-        return numerator / Math.sqrt(denominator.re ** 2 + denominator.im ** 2);
-      });
-      const psdModel = H.map((h) => 20 * Math.log10(h / (2 * Math.PI)));
-      psdTraces.push({
-        x: Array.from({ length: (H.length/2) }, (_, i) => i / H.length).map((a)=>a*fs),
-        y: psdModel.slice(0,(H.length/2)).map((a) => a+(10 * Math.log10(6.2832 / fs))),
-        mode: 'lines',
-        name: `PSD of AR model order N=${n}`,
-      });
-    });
-
-    Plotly.newPlot('plot2', psdTraces, {
-      title: 'PSD Estimation',
-      xaxis: { title: 'Frequency (Hz)' },
-      yaxis: { title: 'PSD (dB/Hz)' },
-      legend: { x: 1, xanchor: 'right', y: 1 },
-    });
-	//document.getElementById('scrolltopsd1fff').scrollIntoView({ behavior: 'smooth' });
-	}
-
-function generatePSD2() {
-    // Compute and plot the PSD Estimation
-	fs = parseInt(document.getElementById('samplingFrequency').value);
-	fs = nextPowerOfTwo(fs);
-	let N;
-	let ff = [1,2,3];
-	            // User input for SNR in dB
-            let snr_db = parseFloat(document.getElementById('snrInput').value);
-            let snr_linear = Math.pow(10, snr_db / 10); // Convert SNR to linear scale
-
-            // Calculate signal power and noise variance
-            let signal_power = x_1.reduce((sum, value) => sum + Math.pow(value, 2), 0) / fs;
-            let noise_variance = signal_power / snr_linear;
-
-            // Generate noisy signal
-            let x_2 = x_1.map(value => value + Math.sqrt(noise_variance) * randn());
-    let psd = periodogram(x_2);
-
-      // Get the input field value
-      let inputValue = document.getElementById('inputN').value;
-
-      // Convert the input to an array
-      N = inputValue
-        .split(',') // Split by comma
-        .map(val => val.trim()) // Trim whitespace
-        .filter(val => val !== '') // Remove empty values
-        .map(Number); // Convert to numbers
-console.log('x_1', psd.length);
-    let psdTraces = [{
-      x: Array.from({ length: (psd.length/2) }, (_, i) => i / psd.length).map((a)=>a*fs), // Normalized frequency
-      y: psd.map((p) => 10 * Math.log10(p)).slice(0, (psd.length/2)).map((a) => a+(10 * Math.log10(6.2832 / fs))),
-      mode: 'lines',
-      name: 'PSD (using simple periodogram)',
-    }];
-
-    N.forEach((n) => {
-      const { a, p } = aryule(x_2, n);
-      const H = Array(Nfft).fill(0).map((_, i) => {
-        const omega = (2 * Math.PI * i) / Nfft;
-        const numerator = Math.sqrt(p);
-        let denominator = { re: 0, im: 0 };
-        a.forEach((ai, j) => {
-          denominator.re += ai * Math.cos(-omega * j);
-          denominator.im += ai * Math.sin(-omega * j);
-        });
-        return numerator / Math.sqrt(denominator.re ** 2 + denominator.im ** 2);
-      });
-      const psdModel = H.map((h) => 20 * Math.log10(h / (2 * Math.PI)));
-      psdTraces.push({
-        x: Array.from({ length: (H.length/2) }, (_, i) => i / H.length).map((a)=>a*fs),
-        y: psdModel.slice(0,(H.length/2)).map((a) => a+(10 * Math.log10(6.2832 / fs))),
-        mode: 'lines',
-        name: `PSD of AR model order N=${n}`,
-      });
-    });
-
-    Plotly.newPlot('psdPlot2', psdTraces, {
-      title: 'PSD Estimation for Noisy Signal',
-      xaxis: { title: 'Frequency (Hz)' },
-      yaxis: { title: 'PSD (dB/Hz)' },
-      legend: { x: 1, xanchor: 'right', y: 1 },
-    });
-	document.getElementById('scrolltopsd2').scrollIntoView({ behavior: 'smooth' });
+	function simulateff() {
+	inputSignal1();
+generateInputSignal2();
+generateNoisySignal();
+generatePSD2();
 	}
     </script>
 	
