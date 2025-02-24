@@ -2,7 +2,7 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "What does the AR in ARMA stand for?",
+      "question": "1. What does the AR in ARMA stand for?",
       "answers": {
         "a": "Autoregressive.",
         "b": "Auto-relative.",
@@ -19,7 +19,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "What is the primary purpose of the Yule-Walker method?",
+      "question": "2. What is the primary purpose of the Yule-Walker method?",
       "answers": {
         "a": "To compute the Fourier Transform of a signal.",
         "b": "To estimate the coefficients of an AR model.",
@@ -36,7 +36,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "What does the MA in ARMA stand for?",
+      "question": "3. What does the MA in ARMA stand for?",
       "answers": {
         "a": "Moving Average.",
         "b": "Mean Adjustment.",
@@ -53,7 +53,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "Which of the following is a key assumption of ARMA modeling?",
+      "question": "4. Which of the following is a key assumption of ARMA modeling?",
       "answers": {
         "a": "The process is non-stationary.",
         "b": "The process is wide-sense stationary.",
@@ -70,7 +70,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "What role does the autocorrelation function play in the Yule-Walker equations?",
+      "question": "5. What role does the autocorrelation function play in the Yule-Walker equations?",
       "answers": {
         "a": "It estimates the noise variance in the model.",
         "b": "It provides the coefficients for the MA part of the model.",
@@ -87,7 +87,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "What is the general form of an AR(2) model?",
+      "question": "6. What is the general form of an AR(2) model?",
       "answers": {
         "a": "x(t) = ε(t) + a1x(t-1) + a2x(t-2).",
         "b": "x(t) = ε(t) - a1x(t-1) - a2x(t-2).",
@@ -104,7 +104,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "What does the partial autocorrelation function (PACF) indicate in time series analysis?",
+      "question": "7. What does the partial autocorrelation function (PACF) indicate in time series analysis?",
       "answers": {
         "a": "The lag at which the signal becomes stationary.",
         "b": "The direct relationship between a variable and its lagged values.",
@@ -121,7 +121,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "How is the order of an AR model determined from the PACF?",
+      "question": "8. How is the order of an AR model determined from the PACF?",
       "answers": {
         "a": "By identifying the lag at which the PACF becomes zero.",
         "b": "By finding the lag at which the PACF peaks.",
@@ -138,7 +138,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "Which of the following is true about ARMA models?",
+      "question": "9. Which of the following is true about ARMA models?",
       "answers": {
         "a": "They are suitable for non-stationary processes.",
         "b": "They combine autoregressive and moving average components.",
@@ -155,7 +155,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "What is a key limitation of the Yule-Walker method?",
+      "question": "10. What is a key limitation of the Yule-Walker method?",
       "answers": {
         "a": "It cannot handle stationary signals.",
         "b": "It assumes a specific order for the AR model.",
