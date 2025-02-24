@@ -2,7 +2,7 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "What is the primary advantage of using Yule-Walker equations for AR model parameter estimation?",
+      "question": "1. What is the primary advantage of using Yule-Walker equations for AR model parameter estimation?",
       "answers": {
         "a": "They minimize the mean square error of the signal.",
         "b": "They allow direct computation of AR coefficients from autocorrelation.",
@@ -19,7 +19,7 @@
       "difficulty": "hard"
     },
     {
-      "question": "Which condition must be satisfied for the ARMA process to be wide-sense stationary?",
+      "question": "2. Which condition must be satisfied for the ARMA process to be wide-sense stationary?",
       "answers": {
         "a": "The AR coefficients must sum to 1.",
         "b": "The roots of the AR polynomial must lie outside the unit circle.",
@@ -36,7 +36,7 @@
       "difficulty": "hard"
     },
     {
-      "question": "How does the order of the AR and MA components in an ARMA(p,q) model affect its spectral representation?",
+      "question": "3. How does the order of the AR and MA components in an ARMA(p,q) model affect its spectral representation?",
       "answers": {
         "a": "The AR order determines the location of poles, while the MA order determines the location of zeros.",
         "b": "Both AR and MA orders determine the location of zeros only.",
@@ -53,7 +53,7 @@
       "difficulty": "hard"
     },
     {
-      "question": "What mathematical property of the autocorrelation matrix ensures the solvability of Yule-Walker equations for AR models?",
+      "question": "4. What mathematical property of the autocorrelation matrix ensures the solvability of Yule-Walker equations for AR models?",
       "answers": {
         "a": "Positivity.",
         "b": "Symmetry.",
@@ -70,7 +70,7 @@
       "difficulty": "hard"
     },
     {
-      "question": "What is the primary limitation of the Yule-Walker method in estimating ARMA model parameters?",
+      "question": "5. What is the primary limitation of the Yule-Walker method in estimating ARMA model parameters?",
       "answers": {
         "a": "It assumes that the input data is Gaussian distributed.",
         "b": "It cannot estimate MA coefficients directly.",
@@ -87,7 +87,7 @@
       "difficulty": "hard"
     },
     {
-      "question": "Why does the Burg method outperform Yule-Walker equations in certain AR parameter estimations?",
+      "question": "6. Why does the Burg method outperform Yule-Walker equations in certain AR parameter estimations?",
       "answers": {
         "a": "It simultaneously estimates AR and MA coefficients.",
         "b": "It minimizes forward and backward prediction errors.",
@@ -104,7 +104,7 @@
       "difficulty": "hard"
     },
     {
-      "question": "In ARMA(p,q) modeling, what is the consequence of underestimating the order of the MA component?",
+      "question": "7. In ARMA(p,q) modeling, what is the consequence of underestimating the order of the MA component?",
       "answers": {
         "a": "The model might produce biased estimates of the AR coefficients.",
         "b": "The model might overfit the data.",
@@ -121,7 +121,7 @@
       "difficulty": "hard"
     },
     {
-      "question": "What is the primary computational challenge in fitting an ARMA model using the maximum likelihood estimation method?",
+      "question": "8. What is the primary computational challenge in fitting an ARMA model using the maximum likelihood estimation method?",
       "answers": {
         "a": "The need to compute the autocorrelation function.",
         "b": "The non-linear optimization required for joint AR and MA parameter estimation.",
@@ -138,7 +138,7 @@
       "difficulty": "hard"
     },
     {
-      "question": "How does overfitting manifest in ARMA model validation?",
+      "question": "9. How does overfitting manifest in ARMA model validation?",
       "answers": {
         "a": "The model exhibits poor predictive performance on unseen data.",
         "b": "The residuals of the model become uncorrelated.",
@@ -155,7 +155,7 @@
       "difficulty": "hard"
     },
     {
-      "question": "What is the significance of the partial autocorrelation function (PACF) in ARMA model selection?",
+      "question": "10. What is the significance of the partial autocorrelation function (PACF) in ARMA model selection?",
       "answers": {
         "a": "It identifies the order of the MA component.",
         "b": "It identifies the order of the AR component.",
