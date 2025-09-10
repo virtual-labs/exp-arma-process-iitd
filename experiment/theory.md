@@ -3,54 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <!-- MathJax configuration for inline $...$ support -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 </head>
 <body>
-<h3 style="margin-top:24pt; margin-bottom:0pt; text-align:center; page-break-inside:avoid; page-break-after:avoid; font-size:18pt;"><a name="yule-walker-estimation"><span style="font-family:'Times New Roman';">Yule-Walker Estimation</span></a></h3>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">The&nbsp;</span><strong><span style="font-family:'Times New Roman';">Yule-Walker Method</span></strong><span style="font-family:'Times New Roman';">&nbsp;for spectral estimation is based on the assumption that the signal can be modeled as an&nbsp;</span><em><span style="font-family:'Times New Roman';">autoregressive (AR) process</span></em><span style="font-family:'Times New Roman';">. Below is the step-by-step explanation.</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt;"><span style="font-family:'Times New Roman';">&nbsp;</span></p>
-<h3 style="margin-top:10pt; margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; font-size:16pt;"><a name="autoregressive-ar-model"><span style="font-family:'Times New Roman';">1. Autoregressive (AR) Model</span></a></h3>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">An AR process of order p is defined as:</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">x[n] = -&sum;</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>k=1</sub></span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sup>p</sup></span><span style="font-family:'Times New Roman';">&nbsp;a</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>k</sub></span><span style="font-family:'Times New Roman';">&nbsp;x[n-k] + e[n]</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">Where:</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; text-indent:-24pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&bull;</span><span style="width:19.1pt; font:7pt 'Times New Roman'; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="font-family:'Times New Roman';">x[n]</span></strong><span style="font-family:'Times New Roman';">: Signal at time n.</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; text-indent:-24pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&bull;</span><span style="width:19.1pt; font:7pt 'Times New Roman'; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="font-family:'Times New Roman';">a</span></strong><strong><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>k</sub></span></strong><span style="font-family:'Times New Roman';">: AR model coefficients to be estimated.</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; text-indent:-24pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&bull;</span><span style="width:19.1pt; font:7pt 'Times New Roman'; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="font-family:'Times New Roman';">p</span></strong><span style="font-family:'Times New Roman';">: Order of the AR model (number of past samples used).</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; text-indent:-24pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&bull;</span><span style="width:19.1pt; font:7pt 'Times New Roman'; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="font-family:'Times New Roman';">e[n]</span></strong><span style="font-family:'Times New Roman';">: White noise (residual error).</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&nbsp;</span></p>
-<h3 style="margin-top:10pt; margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; font-size:16pt;"><a name="autocorrelation-function"><span style="font-family:'Times New Roman';">2. Autocorrelation Function</span></a></h3>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">The AR model is closely linked to the&nbsp;</span><strong><span style="font-family:'Times New Roman';">autocorrelation function</span></strong><span style="font-family:'Times New Roman';">, which measures how similar the signal is to itself at different time lags:</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">R[k] = E[x[n] x[n-k]]</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">For a wide-sense stationary process, R[k] depends only on the lag k, not on n.</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&nbsp;</span></p>
-<h3 style="margin-top:10pt; margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; font-size:16pt;"><a name="yule-walker-equations"><span style="font-family:'Times New Roman';">3. Yule-Walker Equations</span></a></h3>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">The Yule-Walker equations relate the AR coefficients a_k to the autocorrelation values R[k]:</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><img src="yw1.png" width="244" height="79" alt=""><span style="font-family:'Times New Roman';">&nbsp;=&nbsp;</span><img src="yw2.png" width="75" height="79" alt=""><span style="font-family:'Times New Roman';">&nbsp;</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&nbsp;</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">This forms a system of linear equations:</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; text-indent:-24pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&bull;</span><span style="width:19.1pt; font:7pt 'Times New Roman'; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="font-family:'Times New Roman';">Left matrix</span></strong><span style="font-family:'Times New Roman';">: Toeplitz matrix of autocorrelation values.</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; text-indent:-24pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&bull;</span><span style="width:19.1pt; font:7pt 'Times New Roman'; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="font-family:'Times New Roman';">Right-hand side</span></strong><span style="font-family:'Times New Roman';">: Negative autocorrelation values for lags 1 to p.</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&nbsp;</span></p>
-<h3 style="margin-top:10pt; margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; font-size:16pt;"><a name="solving-for-a_k"><span style="font-family:'Times New Roman';">4. Solving for a</span><span style="font-family:'Times New Roman'; font-size:10.67pt;"><sub>k</sub></span></a></h3>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">To solve for the AR coefficients a</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>k</sub></span><span style="font-family:'Times New Roman';">, use the autocorrelation values. The residual noise variance &sigma;</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>e</sub></span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sup>2</sup></span><span style="font-family:'Times New Roman';">&nbsp;is calculated as:</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&sigma;</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>e</sub></span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sup>2</sup></span><span style="font-family:'Times New Roman';">&nbsp;= R[0] + &sum;</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>k=1</sub></span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sup>p</sup></span><span style="font-family:'Times New Roman';">&nbsp;a</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>k</sub></span><span style="font-family:'Times New Roman';">&nbsp;R[k].</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&nbsp;</span></p>
-<h3 style="margin-top:10pt; margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; font-size:16pt;"><a name="power-spectral-density-psd"><span style="font-family:'Times New Roman';">5. Power Spectral Density (PSD)</span></a></h3>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">The power spectral density (PSD) is computed as:</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">P(f) = &sigma;</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>e</sub></span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sup>2</sup></span><span style="font-family:'Times New Roman';">&nbsp;/ |1 + &sum;</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>k=1</sub></span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sup>p</sup></span><span style="font-family:'Times New Roman';">&nbsp;a</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>k</sub></span><span style="font-family:'Times New Roman';">&nbsp;e</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sup>-j2&pi;fk</sup></span><span style="font-family:'Times New Roman';">|</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sup>2</sup></span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">This shows how power is distributed across frequencies using the AR coefficients a</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>k</sub></span><span style="font-family:'Times New Roman';">&nbsp;and the noise variance &sigma;</span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sub>e</sub></span><span style="font-family:'Times New Roman'; font-size:9.33pt;"><sup>2</sup></span><span style="font-family:'Times New Roman';">.</span></p>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&nbsp;</span></p>
-<h3 style="margin-top:10pt; margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; font-size:16pt;"><a name="key-intuitions"><span style="font-family:'Times New Roman';">Key Intuitions</span></a></h3>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; text-indent:-24pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&bull;</span><span style="width:19.1pt; font:7pt 'Times New Roman'; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="font-family:'Times New Roman';">Autoregression</span></strong><span style="font-family:'Times New Roman';">: Yule-Walker assumes the signal can be predicted using its past values.</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; text-indent:-24pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&bull;</span><span style="width:19.1pt; font:7pt 'Times New Roman'; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="font-family:'Times New Roman';">Autocorrelation</span></strong><span style="font-family:'Times New Roman';">: Relates the past values of the signal to the current value through R[k].</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; text-indent:-24pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&bull;</span><span style="width:19.1pt; font:7pt 'Times New Roman'; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong><span style="font-family:'Times New Roman';">PSD</span></strong><span style="font-family:'Times New Roman';">: Transforms time-domain properties (autocorrelation) into frequency-domain characteristics (PSD).</span></p>
-<p style="margin-top:1.8pt; margin-left:36pt; margin-bottom:1.8pt; font-size:14pt;"><span style="font-family:'Times New Roman';">&nbsp;</span></p>
-<h3 style="margin-top:10pt; margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; font-size:16pt;"><a name="steps-in-practice"><span style="font-family:'Times New Roman';">Steps for the Calculation of PSD</span></a></h3>
-<ol type="1" style="margin:0pt; padding-left:0pt;">
-    <li style="margin-top:1.8pt; margin-left:27.5pt; margin-bottom:1.8pt; padding-left:8.5pt; font-family:'Times New Roman'; font-size:14pt;">Estimate R[k] (autocorrelation values) from the signal.</li>
-    <li style="margin-top:1.8pt; margin-left:27.5pt; margin-bottom:1.8pt; padding-left:8.5pt; font-family:'Times New Roman'; font-size:14pt;">Solve the Yule-Walker equations to find a<span style="font-size:9.33pt;"><sub>k</sub></span>.</li>
-    <li style="margin-top:1.8pt; margin-left:27.5pt; margin-bottom:1.8pt; padding-left:8.5pt; font-family:'Times New Roman'; font-size:14pt;">Use a<span style="font-size:9.33pt;"><sub>k</sub></span> and &sigma;<span style="font-size:9.33pt;"><sub>e</sub></span><span style="font-size:9.33pt;"><sup>2&nbsp;</sup></span>to compute the PSD.</li>
-</ol>
-<p style="margin-top:9pt; margin-bottom:9pt; font-size:14pt;"><span style="font-family:'Times New Roman';">This is the mathematical foundation of the Yule-Walker spectral estimation method, which is efficient and works well for stationary signals.</span></p>
+
+  <h2>Understanding Yule-Walker Estimation in Spectral Analysis</h2>
+
+  <h3>Theory</h3>
+  <p>
+    Yule-Walker estimation is a method to analyze a signal by modeling it as a process built from its past values (an autoregressive model). 
+    Instead of directly computing a periodogram, this approach belongs to <strong>parametric spectral estimation</strong>: we first fit an AR model to the signal, and then derive its spectrum from that model.
+  </p>
+  <h3>Autoregressive (AR) Model</h3>
+  <p>
+    An AR process of order <strong>p</strong> is defined as::
+  </p>
+  <p>$$x[n] = -\sum_{k=1}^{p} a_k x[n-k] + e[n]$$</p>
+  <ul>
+    <li><strong>p</strong> = order of the AR model</li>
+    <li><strong>a<sub>k</sub></strong> = AR coefficients</li>
+    <li><strong>e[n]</strong> = white noise (error term)</li>
+  </ul>
+  <p>
+    Once we have the AR coefficients, the <strong>power spectral density (PSD)</strong> is computed analytically:
+  </p>
+  <p>$$P(f) = \frac{\sigma_e^2}{\left|1 + \sum_{k=1}^{p} a_k e^{-j 2 \pi f k}\right|^2}$$</p>
+  <p>
+    where $\sigma_e^2$ is the variance of the white noise $e[n]$.
+  </p>
+
+  <h3>Autocorrelation Function</h3>
+  <p>
+  Autocorrelation function measures how similar the signal is to itself at different time lags:
+  </p>
+  <p style="text-align:center;">
+    $$R[k] = E[x[n] \, x[n-k]]$$
+  </p>
+  <p>
+    For a <strong>wide-sense stationary</strong> process, $R[k]$ depends only on the lag $k$, not on $n$.
+  </p>
+
+  <h3>Yule-Walker Equations</h3>
+  <ol>
+    <li>Compute autocorrelation of the signal $R[m]$ for lags 0 to $p$.</li>
+    <li>Solve the <strong>Yule-Walker equations</strong>:
+
+      <p style="text-align:center;">
+        $$ 
+        \begin{bmatrix}
+          R[0] & R[1] & \cdots & R[p-1] \\
+          R[1] & R[0] & \cdots & R[p-2] \\
+          \vdots & \vdots & \ddots & \vdots \\
+          R[p-1] & R[p-2] & \cdots & R[0]
+        \end{bmatrix}
+        \begin{bmatrix}
+          a_1 \\ a_2 \\ \vdots \\ a_p
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+          R[1] \\ R[2] \\ \vdots \\ R[p]
+        \end{bmatrix}
+        $$
+      </p>
+
+      where $R$ is a Toeplitz matrix of autocorrelations, $a$ are the AR coefficients, and the right-hand vector is the autocorrelation vector.
+    </li>
+    <li>Compute PSD using the AR coefficients and noise variance.</li>
+  </ol>
+
+  <h3>Advantages</h3>
+  <ul>
+    <li>Provides high-resolution spectral estimates, even for short signals.</li>
+    <li>Useful for narrowband signals.</li>
+    <li>More stable than periodogram in noisy conditions.</li>
+  </ul>
+
+  <p>
+    Yule-Walker estimation models your signal as a process generated by its past values 
+    (autoregressive model), then calculates the frequency content from that model. 
+    Unlike non-parametric methods (like Welch), it assumes a model and uses fewer data points 
+    to get a smoother PSD estimate.
+  </p>
+
 </body>
 </html>
