@@ -62,7 +62,6 @@
   <ol>
     <li>Compute autocorrelation of the signal $R[m]$ for lags 0 to $p$.</li>
     <li>Solve the <strong>Yule-Walker equations</strong>:
-
       <p style="text-align:center;">
         $$ 
         \begin{bmatrix}
@@ -80,7 +79,6 @@
         \end{bmatrix}
         $$
       </p>
-
       where $R$ is a Toeplitz matrix of autocorrelations, $a$ are the AR coefficients, and the right-hand vector is the autocorrelation vector.
     </li>
     <li>Compute PSD using the AR coefficients and noise variance.</li>
@@ -102,3 +100,4 @@
 
 </body>
 </html>
+
