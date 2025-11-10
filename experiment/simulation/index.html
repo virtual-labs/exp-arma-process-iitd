@@ -105,17 +105,24 @@ select, input {
 .popup .close-btn {
   display: block;
 }
+#boxes {
+    display: none;
+}
     </style>
 	<br/>
 	<br/>
     <div class="containerff">
         <div class="box">
+            <!-------------
+                onclick = "popUpDiv()"
+                --------->
             <button 
 			class="button bg-blue-500 text-white rounded-md px-2 py-1"
-			id="triggerButton" onclick = "popUpDiv()" aria-expanded="false">Generate Input Signal</button>
+			id="triggerButton"  onclick = "inputSignal()" aria-expanded="false">Generate Input Signal</button>
             <a href="#realData">
                 <button 
                   class="button bg-blue-500 text-white rounded-md px-2 py-1"
+                  onclick="showDiv()"
                   aria-expanded="false">
                   Input Real Data
                 </button>
@@ -135,6 +142,10 @@ select, input {
 
 			<label for="inputN">AR Model order(s):</label>
     <input type="number" id="inputN" value="10" min = "5" max = "50" />
+    <br/><br/>
+    <button 
+    class="button bg-blue-500 text-white rounded-md px-2 py-1"
+    onclick = "simulateff()">Simulate</button>
 			<!--
             <input type="text" placeholder="Input 2">
             <input type="text" placeholder="Input 3">
@@ -215,9 +226,7 @@ select, input {
             <div class="input-box">
                 <input type="text" placeholder="Input 2">
 		-->
-		<button 
-		class="button bg-blue-500 text-white rounded-md px-2 py-1"
-		onclick = "simulateff()">Simulate</button>
+
 		<br><br>
 		<button 
 		class="button bg-green-500 text-white rounded-md px-2 py-1"
@@ -264,7 +273,7 @@ select, input {
 	            <div id = "scrolltomessage" class="flex items-center gap-2 justify-center max-lg:flex-col">
               <div id="plot11"></div>
 
-	
+<div id = "boxes">	
               <h2 id="realData" class="text-2xl font-bold text-gray-800 mb-4"></h2>
               <div class="containerff">
                   <div class="box">  
@@ -291,7 +300,8 @@ select, input {
                       <p>Output</p>
                       <div id="output" class="w-[30em] h-[20em]"></div>
                   </div>
-              </div>	
+              </div>
+</div>             	
 <script>
         function checkFrequencies2() {
         // Get the selected operation from the dropdown
@@ -1455,10 +1465,16 @@ if (inputSelector1 === 'rectangular' || inputSelector2 === 'rectangular') {
     }
 	hideElements();
 	
-	function simulateff() {
+  
+    function inputSignal() {
 	inputSignal1();
 generateInputSignal2();
 generateNoisySignal();
+
+	}
+
+	function simulateff() {
+
 generatePSD2();
 	}
 
@@ -1565,6 +1581,10 @@ function popUpDiv() {
 function closePopup() {
         document.getElementById("inputFieldsBox").classList.remove("popup");
       }
+
+      function showDiv() {
+    document.getElementById("boxes").style.display = "block";
+  } 
     </script>
 	
 	<style>
