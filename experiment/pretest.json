@@ -87,12 +87,12 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "6. What is the general form of an AR(2) model?",
+      "question": "6. What is the general form of an AR(2) model? In an AR(2) model, x(t) represents the current value, x(t-1) and x(t-2) are the previous values, a1 and a2 are the coefficients that determine the influence of past values, and ε(t) is the noise term that represents random variation.",
       "answers": {
-        "a": "x(t) = ε(t) + a1x(t-1) + a2x(t-2).",
-        "b": "x(t) = ε(t) - a1x(t-1) - a2x(t-2).",
-        "c": "x(t) = ε(t) + a1x(t-1) - a2x(t-2).",
-        "d": "x(t) = a1x(t-1) + a2x(t-2)."
+        "a": "x(t) = ε(t) + a<sub>1</sub>x(t<sub>-1</sub>) + a<sub>2</sub>x(t<sub>-2</sub>).",
+        "b": "x(t) = ε(t) - a<sub>1</sub>x(t<sub>-1</sub>) - a<sub>2</sub>x(t<sub>-2</sub>).",
+        "c": "x(t) = ε(t) + a<sub>1</sub>x(t<sub>-1</sub>) - a<sub>2</sub>x(t<sub>-2</sub>).",
+        "d": "x(t) = a<sub>1</sub>x(t<sub>-1</sub>) + a<sub>2</sub>x(t<sub>-2</sub>)."
       },
       "explanations": {
         "a": "This is the correct representation of an AR(2) model with autoregressive terms and noise.",
