@@ -11,15 +11,16 @@
     <!-- sidebar and body -->
 	    <!-- sidebar and body -->
 	<div id = "instructions">
-    <h1>Instructions for Comparing of Different Spectral Estimation Methods with AR-Modeled Yule-Walker Method</h1>
+    <h1>Instructions for Spectral Estimation using AR-Modeled Yule-Walker Method</h1>
 
 <ul>
     <li class="step step1"><strong>Step 1:</strong> Click on <em>"Generate Input Signal"</em> to generate the signal.</li>
-    <li class="step step2"><strong>Step 2:</strong> Select the base signal from the dropdown menu, and enter the input signal frequency (Hz), sampling frequency (Hz), and the AR model order in the parameters section.</li>
-    <li class="step step4"><strong>Step 3:</strong> Choose an operation such as addition, multiplication, or convolution from the dropdown menu.</li>
-    <li class="step step2"><strong>Step 4:</strong> Add AWGN noise by entering the SNR value (in dB) in the 'AWGN Noise' section.</li>
-    <li class="step step1"><strong>Step 5:</strong> Click the <em>"Simulate"</em> button to run the simulation.</li>
-    <li class="step step2"><strong>Step 6:</strong> Reset the simulator by clicking the <em>"Reset Simulator"</em> button.</li>
+    <li class="step step2"><strong>Step 2:</strong> Enter the input signal frequency (Hz), sampling frequency (Hz), and the AR model order in the parameters section.</li>
+    <li class="step step3"><strong>Step 3:</strong> Select the base signal from the dropdown menu.</li>
+    <li class="step step4"><strong>Step 4:</strong> Choose an operation such as addition, multiplication, or convolution from the dropdown menu.</li>
+    <li class="step step2"><strong>Step 5:</strong> Add AWGN noise by entering the SNR value (in dB) in the 'AWGN Noise' section.</li>
+    <li class="step step1"><strong>Step 6:</strong> Click the <em>"Simulate"</em> button to run the simulation.</li>
+    <li class="step step2"><strong>Step 7:</strong> Reset the simulator by clicking the <em>"Reset Simulator"</em> button.</li>
 </ul>
 
 	</div>
@@ -107,27 +108,32 @@ select, input {
 #boxes {
     display: none;
 }
-#inputBox2 {
-        border: 2px solid white; /* Adjust the border width and color as needed */
-    }
     </style>
 	<br/>
 	<br/>
     <div class="containerff">
+        <div class="box">
+            <!-------------
+                onclick = "popUpDiv()"
+                --------->
+            <button 
+			class="button bg-blue-500 text-white rounded-md px-2 py-1"
+			id="triggerButton"  onclick = "inputSignal()" aria-expanded="false">Generate Input Signal</button>
+            <a href="#realData">
+                <button 
+                  class="button bg-blue-500 text-white rounded-md px-2 py-1"
+                  onclick="showDiv()"
+                  aria-expanded="false">
+                  Input Real Data
+                </button>
+              </a>
+            <div id="inputSignal1" class="w-[30em] h-[20em]"></div>
+        </div>
+
         <div class="box" id="inputFieldsBox">
         <span class="close-btn" onclick="closePopup()">&times;</span>
 		<p>Parameters</p>
 		<br>
-        <label for = "baseSignal">Base Signal</label>
-        <select id="inputSelector" onchange="handleInputChange()">
-            <option value="" disabled selected>Select an input</option>
-            <option value="sine" selected>Sine Wave</option>
-            <option value="cosine">Cosine Wave</option>
-            <!--
-            <option value="rectangular">Rectangular Wave</option>
-            -->
-        </select>
-        <br/>
 		<label for = "messageFrequency">Input Signal Frequency (Hz)</label>
             <input id = "messageFrequency" type="text" value="50" min = "1">
 
@@ -166,38 +172,28 @@ select, input {
         <!---------------------------------------->
         </div>
 
-        <div class="box">
-            <br/>
-            <p>Input Signal</p>
-            <br/>
-            <!-------------
-                onclick = "popUpDiv()"
-                --------->
-            <button 
-			class="button bg-blue-500 text-white rounded-md px-2 py-1"
-			  onclick = "inputSignal()" aria-expanded="false">Generate Input Signal</button>
-            <a href="#realData">
-                <button 
-                  class="button bg-blue-500 text-white rounded-md px-2 py-1"
-                  onclick="showDiv()"
-                  aria-expanded="false">
-                  Input Real Data
-                </button>
-              </a>
-            <div id="inputSignal1" class="w-[30em] h-[20em]"></div>
-        </div>
-
         <div class="box" id = "outputxx">
-            <p>AWGN Noise</p>
-            <div class="input-box">
-			    <label for="snrInput">SNR (in dB):</label>
-                <input id="snrInput" type="text" value="10">
-            </div>
-		    <div id="plot12" class="w-[30em] h-[20em]"></div>
+            <p>Power Spectral Density (PSD) Estimation</p>
+						<div id="arCoefficientsBox" style="border: 1px solid black; padding: 10px; margin-bottom: 10px; font-size: 14px; white-space: pre-wrap;"></div>
+
+			<div id="psdPlot2" class="w-[40em] h-[20em]"></div>
         </div>
     </div>
 
-    <div class="four-boxes" id="additionalBoxes">
+    <div class="four-boxes hidden" id="additionalBoxes">
+        <div class="box" id="dropdownBox1">
+            <p>Base Signal</p>
+            <div class="dropdown">
+    <select id="inputSelector" onchange="handleInputChange()">
+        <option value="" disabled selected>Select an input</option>
+        <option value="sine" selected>Sine Wave</option>
+        <option value="cosine">Cosine Wave</option>
+		<!--
+		<option value="rectangular">Rectangular Wave</option>
+		-->
+    </select>
+            </div>
+        </div>
 
         <div class="box" id="dropdownBox2">
             <p>Operations</p>
@@ -236,10 +232,12 @@ select, input {
         </div>
 
         <div class="box" id="inputBox1">
-            <p>Power Spectral Density (PSD) Estimation</p>
-						<div id="arCoefficientsBox" style="border: 1px solid black; padding: 10px; margin-bottom: 10px; font-size: 14px; white-space: pre-wrap;"></div>
-
-			<div id="psdPlot2" class="w-[40em] h-[20em]"></div>
+            <p>AWGN Noise</p>
+            <div class="input-box">
+			    <label for="snrInput">SNR (in dB):</label>
+                <input id="snrInput" type="text" value="10">
+            </div>
+		    <div id="plot12" class="w-[30em] h-[20em]"></div>
         </div>
 
         <div class="box" id="inputBox2">
