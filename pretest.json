@@ -1,0 +1,175 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. What does the AR in ARMA stand for?",
+      "answers": {
+        "a": "Autoregressive.",
+        "b": "Auto-relative.",
+        "c": "Auto-random.",
+        "d": "Auto-residual."
+      },
+      "explanations": {
+        "a": "AR stands for autoregressive, which models the current value of a time series as a function of its past values.",
+        "b": "Auto-relative is not a valid term in this context.",
+        "c": "Auto-random is not related to ARMA processes.",
+        "d": "Auto-residual is not a valid term in this context."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "2. What is the primary purpose of the Yule-Walker method?",
+      "answers": {
+        "a": "To compute the Fourier Transform of a signal.",
+        "b": "To estimate the coefficients of an AR model.",
+        "c": "To calculate the inverse of a covariance matrix.",
+        "d": "To identify the frequency components of a signal."
+      },
+      "explanations": {
+        "a": "The Fourier Transform is not related to the Yule-Walker method.",
+        "b": "The Yule-Walker method is used to estimate AR model coefficients based on autocorrelation.",
+        "c": "The method does not focus on inverting covariance matrices.",
+        "d": "Frequency identification is not the primary purpose of the Yule-Walker method."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "3. What does the MA in ARMA stand for?",
+      "answers": {
+        "a": "Moving Average.",
+        "b": "Mean Adjustment.",
+        "c": "Matrix Approximation.",
+        "d": "Model Analysis."
+      },
+      "explanations": {
+        "a": "MA stands for moving average, which models the current value of a time series as a function of past errors.",
+        "b": "Mean adjustment is not related to ARMA processes.",
+        "c": "Matrix approximation is unrelated to ARMA.",
+        "d": "Model analysis is not part of the ARMA acronym."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "4. Which of the following is a key assumption of ARMA modeling?",
+      "answers": {
+        "a": "The process is non-stationary.",
+        "b": "The process is wide-sense stationary.",
+        "c": "The process is periodic.",
+        "d": "The process has zero mean."
+      },
+      "explanations": {
+        "a": "ARMA models require stationarity, not non-stationarity.",
+        "b": "Wide-sense stationarity is a key assumption for ARMA modeling.",
+        "c": "Periodicity is not a requirement for ARMA models.",
+        "d": "An ARMA process does not necessarily have a zero mean."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "5. What role does the autocorrelation function play in the Yule-Walker equations?",
+      "answers": {
+        "a": "It estimates the noise variance in the model.",
+        "b": "It provides the coefficients for the MA part of the model.",
+        "c": "It is used to estimate the AR coefficients.",
+        "d": "It determines the order of the ARMA process."
+      },
+      "explanations": {
+        "a": "The noise variance is not directly estimated from the autocorrelation function.",
+        "b": "The MA coefficients are not determined by the Yule-Walker equations.",
+        "c": "The autocorrelation function is central to estimating the AR coefficients.",
+        "d": "The order is determined independently of the autocorrelation function."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "6. What is the general form of an AR(2) model? In an AR(2) model, x(t) represents the current value, x(t-1) and x(t-2) are the previous values, a1 and a2 are the coefficients that determine the influence of past values, and ε(t) is the noise term that represents random variation.",
+      "answers": {
+        "a": "x(t) = ε(t) + a<sub>1</sub>x(t<sub>-1</sub>) + a<sub>2</sub>x(t<sub>-2</sub>).",
+        "b": "x(t) = ε(t) - a<sub>1</sub>x(t<sub>-1</sub>) - a<sub>2</sub>x(t<sub>-2</sub>).",
+        "c": "x(t) = ε(t) + a<sub>1</sub>x(t<sub>-1</sub>) - a<sub>2</sub>x(t<sub>-2</sub>).",
+        "d": "x(t) = a<sub>1</sub>x(t<sub>-1</sub>) + a<sub>2</sub>x(t<sub>-2</sub>)."
+      },
+      "explanations": {
+        "a": "This is the correct representation of an AR(2) model with autoregressive terms and noise.",
+        "b": "The coefficients are not negative in the general form.",
+        "c": "The signs of the coefficients are not mixed.",
+        "d": "The noise term is missing in this representation."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "7. What does the partial autocorrelation function (PACF) indicate in time series analysis?",
+      "answers": {
+        "a": "The lag at which the signal becomes stationary.",
+        "b": "The direct relationship between a variable and its lagged values.",
+        "c": "The overall dependence of the variable on all its past values.",
+        "d": "The frequency components of the time series."
+      },
+      "explanations": {
+        "a": "Stationarity is not determined by the PACF.",
+        "b": "The PACF measures the direct relationship, removing indirect effects.",
+        "c": "This describes the autocorrelation function, not the PACF.",
+        "d": "Frequency components are unrelated to PACF."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "8. How is the order of an AR model determined from the PACF?",
+      "answers": {
+        "a": "By identifying the lag at which the PACF becomes zero.",
+        "b": "By finding the lag at which the PACF peaks.",
+        "c": "By counting the number of significant lags in the PACF.",
+        "d": "By evaluating the frequency of oscillations in the PACF."
+      },
+      "explanations": {
+        "a": "The order corresponds to the lag where the PACF drops to zero after significant values.",
+        "b": "Peaks do not determine model order.",
+        "c": "Significant lags indicate the order of the AR model.",
+        "d": "Oscillations are not relevant to determining order."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "9. Which of the following is true about ARMA models?",
+      "answers": {
+        "a": "They are suitable for non-stationary processes.",
+        "b": "They combine autoregressive and moving average components.",
+        "c": "They are purely autoregressive models.",
+        "d": "They require a zero-mean time series."
+      },
+      "explanations": {
+        "a": "ARMA models are suitable for stationary processes.",
+        "b": "ARMA models combine AR and MA components.",
+        "c": "ARMA includes both AR and MA terms.",
+        "d": "A zero mean is not a strict requirement."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "10. What is a key limitation of the Yule-Walker method?",
+      "answers": {
+        "a": "It cannot handle stationary signals.",
+        "b": "It assumes a specific order for the AR model.",
+        "c": "It requires the MA component to be known.",
+        "d": "It does not converge for large datasets."
+      },
+      "explanations": {
+        "a": "The method is specifically designed for stationary signals.",
+        "b": "The Yule-Walker method requires the AR order to be specified beforehand.",
+        "c": "The method estimates AR coefficients, not MA components.",
+        "d": "The method works well with large datasets."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    }
+  ]
+}
