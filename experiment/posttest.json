@@ -16,7 +16,7 @@
         "d": "While computationally efficient, this is not their primary advantage."
       },
       "correctAnswer": "b",
-      "difficulty": "hard"
+      "difficulty": "intermediate"
     },
     {
       "question": "2. Which condition must be satisfied for the ARMA process to be wide-sense stationary?",
@@ -33,7 +33,7 @@
         "d": "While this is true, it is a consequence, not a condition."
       },
       "correctAnswer": "b",
-      "difficulty": "hard"
+      "difficulty": "intermediate"
     },
     {
       "question": "3. How does the order of the AR and MA components in an ARMA(p,q) model affect its spectral representation?",
@@ -50,7 +50,7 @@
         "d": "This is incorrect; the orders are critical in spectral representation."
       },
       "correctAnswer": "a",
-      "difficulty": "hard"
+      "difficulty": "intermediate"
     },
     {
       "question": "4. What mathematical property of the autocorrelation matrix ensures the solvability of Yule-Walker equations for AR models?",
@@ -67,7 +67,7 @@
         "d": "This is correct; positive definiteness ensures a unique solution."
       },
       "correctAnswer": "d",
-      "difficulty": "hard"
+      "difficulty": "intermediate"
     },
     {
       "question": "5. What is the primary limitation of the Yule-Walker method in estimating ARMA model parameters?",
@@ -84,7 +84,7 @@
         "d": "It is specifically designed for stationary processes."
       },
       "correctAnswer": "b",
-      "difficulty": "hard"
+      "difficulty": "intermediate"
     },
     {
       "question": "6. Why does the Burg method outperform Yule-Walker equations in certain AR parameter estimations?",
@@ -101,7 +101,7 @@
         "d": "Burg requires stationarity as much as Yule-Walker."
       },
       "correctAnswer": "b",
-      "difficulty": "hard"
+      "difficulty": "intermediate"
     },
     {
       "question": "7. In ARMA(p,q) modeling, what is the consequence of underestimating the order of the MA component?",
@@ -118,7 +118,7 @@
         "d": "Stationarity is not affected by the MA order."
       },
       "correctAnswer": "c",
-      "difficulty": "hard"
+      "difficulty": "intermediate"
     },
     {
       "question": "8. What is the primary computational challenge in fitting an ARMA model using the maximum likelihood estimation method?",
@@ -135,7 +135,7 @@
         "d": "Maximum likelihood does not require strict Gaussianity."
       },
       "correctAnswer": "b",
-      "difficulty": "hard"
+      "difficulty": "advanced"
     },
     {
       "question": "9. How does overfitting manifest in ARMA model validation?",
@@ -152,7 +152,7 @@
         "d": "Overfitting typically involves too high, not low, order."
       },
       "correctAnswer": "c",
-      "difficulty": "hard"
+      "difficulty": "advanced"
     },
     {
       "question": "10. What is the significance of the partial autocorrelation function (PACF) in ARMA model selection?",
@@ -169,7 +169,7 @@
         "d": "PACF does not determine combined order."
       },
       "correctAnswer": "b",
-      "difficulty": "hard"
+      "difficulty": "advanced"
     }
   ]
 }
