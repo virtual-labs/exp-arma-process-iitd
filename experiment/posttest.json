@@ -2,173 +2,173 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "1. What is the primary advantage of using Yule-Walker equations for AR model parameter estimation?",
+      "question": "1. In the Blackman-Tukey method, how does truncating the autocorrelation function and applying a window affect the spectral estimate?",
       "answers": {
-        "a": "They minimize the mean square error of the signal.",
-        "b": "They allow direct computation of AR coefficients from autocorrelation.",
-        "c": "They provide a closed-form solution for both AR and MA coefficients.",
-        "d": "They reduce the computational complexity of ARMA models."
+        "a": "It increases resolution by reducing the main lobe width.",
+        "b": "It reduces the variance at the cost of resolution.",
+        "c": "It eliminates spectral leakage caused by finite data length.",
+        "d": "It ensures an unbiased estimate by removing noise correlation."
       },
       "explanations": {
-        "a": "Minimizing the mean square error is associated with least squares methods.",
-        "b": "This is correct; Yule-Walker equations rely on autocorrelation for AR coefficient estimation.",
-        "c": "Yule-Walker equations are specifically for AR models, not MA models.",
-        "d": "While computationally efficient, this is not their primary advantage."
+        "a": "Truncation reduces resolution rather than improving it.",
+        "b": "Correct — truncating and windowing smooths the autocorrelation, reducing variance but sacrificing resolution.",
+        "c": "Leakage is reduced but not eliminated.",
+        "d": "Bias may remain, especially for short signals or improper windowing."
       },
       "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
-      "question": "2. Which condition must be satisfied for the ARMA process to be wide-sense stationary?",
+      "question": "2. Which scenario would most likely degrade the reliability of the periodogram in estimating a signal’s PSD?",
       "answers": {
-        "a": "The AR coefficients must sum to 1.",
-        "b": "The roots of the AR polynomial must lie outside the unit circle.",
-        "c": "The MA coefficients must be symmetric.",
-        "d": "The autocorrelation function must converge to zero at infinity."
+        "a": "Applying a Hanning window to the signal.",
+        "b": "Using a longer DFT length than the signal duration.",
+        "c": "Estimating from a short, non-overlapping segment of noisy data.",
+        "d": "Averaging multiple FFTs over overlapping windows."
       },
       "explanations": {
-        "a": "This is not a condition for stationarity but for unit root processes.",
-        "b": "This ensures the ARMA process is stationary.",
-        "c": "Symmetry is not a requirement for stationarity.",
-        "d": "While this is true, it is a consequence, not a condition."
-      },
-      "correctAnswer": "b",
-      "difficulty": "intermediate"
-    },
-    {
-      "question": "3. How does the order of the AR and MA components in an ARMA(p,q) model affect its spectral representation?",
-      "answers": {
-        "a": "The AR order determines the location of poles, while the MA order determines the location of zeros.",
-        "b": "Both AR and MA orders determine the location of zeros only.",
-        "c": "The AR order determines the frequency bandwidth, while the MA order determines the amplitude.",
-        "d": "The AR and MA orders have no effect on the spectral representation."
-      },
-      "explanations": {
-        "a": "This is correct; AR affects poles, and MA affects zeros in the frequency domain.",
-        "b": "AR primarily affects poles, not zeros.",
-        "c": "This is incorrect; orders define the structure, not specific attributes like bandwidth.",
-        "d": "This is incorrect; the orders are critical in spectral representation."
-      },
-      "correctAnswer": "a",
-      "difficulty": "intermediate"
-    },
-    {
-      "question": "4. What mathematical property of the autocorrelation matrix ensures the solvability of Yule-Walker equations for AR models?",
-      "answers": {
-        "a": "Positivity.",
-        "b": "Symmetry.",
-        "c": "Toeplitz structure.",
-        "d": "Positive definiteness."
-      },
-      "explanations": {
-        "a": "Positivity alone is not sufficient for solvability.",
-        "b": "Symmetry is a property of the autocorrelation matrix but does not guarantee solvability.",
-        "c": "Toeplitz structure simplifies computations but does not ensure solvability.",
-        "d": "This is correct; positive definiteness ensures a unique solution."
-      },
-      "correctAnswer": "d",
-      "difficulty": "intermediate"
-    },
-    {
-      "question": "5. What is the primary limitation of the Yule-Walker method in estimating ARMA model parameters?",
-      "answers": {
-        "a": "It assumes that the input data is Gaussian distributed.",
-        "b": "It cannot estimate MA coefficients directly.",
-        "c": "It is computationally inefficient for large datasets.",
-        "d": "It is only applicable to non-stationary processes."
-      },
-      "explanations": {
-        "a": "Yule-Walker does not require Gaussian assumptions.",
-        "b": "This is correct; Yule-Walker only estimates AR coefficients.",
-        "c": "Yule-Walker is computationally efficient due to its reliance on autocorrelation.",
-        "d": "It is specifically designed for stationary processes."
-      },
-      "correctAnswer": "b",
-      "difficulty": "intermediate"
-    },
-    {
-      "question": "6. Why does the Burg method outperform Yule-Walker equations in certain AR parameter estimations?",
-      "answers": {
-        "a": "It simultaneously estimates AR and MA coefficients.",
-        "b": "It minimizes forward and backward prediction errors.",
-        "c": "It avoids the computation of the autocorrelation function.",
-        "d": "It directly handles non-stationary processes."
-      },
-      "explanations": {
-        "a": "Burg method estimates only AR coefficients.",
-        "b": "This is correct; Burg minimizes errors in both directions.",
-        "c": "Burg still uses autocorrelation but in an implicit manner.",
-        "d": "Burg requires stationarity as much as Yule-Walker."
-      },
-      "correctAnswer": "b",
-      "difficulty": "intermediate"
-    },
-    {
-      "question": "7. In ARMA(p,q) modeling, what is the consequence of underestimating the order of the MA component?",
-      "answers": {
-        "a": "The model might produce biased estimates of the AR coefficients.",
-        "b": "The model might overfit the data.",
-        "c": "The model might fail to capture short-term dependencies.",
-        "d": "The model might violate the stationarity condition."
-      },
-      "explanations": {
-        "a": "Bias is more associated with incorrect AR order.",
-        "b": "Underestimation does not lead to overfitting.",
-        "c": "This is correct; the MA component captures short-term dependencies.",
-        "d": "Stationarity is not affected by the MA order."
+        "a": "Hanning windows help reduce leakage, not reliability.",
+        "b": "Zero-padding (longer DFT) interpolates but does not degrade reliability.",
+        "c": "Correct — short noisy segments increase variance and reduce estimation quality.",
+        "d": "Averaging overlapping FFTs is part of Welch, which improves reliability."
       },
       "correctAnswer": "c",
       "difficulty": "intermediate"
     },
     {
-      "question": "8. What is the primary computational challenge in fitting an ARMA model using the maximum likelihood estimation method?",
+      "question": "3. In the Bartlett method, why is the variance reduced compared to a basic periodogram, and what is the resulting trade-off?",
       "answers": {
-        "a": "The need to compute the autocorrelation function.",
-        "b": "The non-linear optimization required for joint AR and MA parameter estimation.",
-        "c": "The inability to handle missing data in the input signal.",
-        "d": "The requirement for the input signal to be strictly Gaussian."
+        "a": "Fewer DFT points reduce computational error but increase bias.",
+        "b": "Shorter segments allow faster FFTs, enhancing resolution.",
+        "c": "Averaging multiple segments reduces variance but lowers frequency resolution.",
+        "d": "Overlapping segments reduce spectral leakage but introduce time-domain distortion."
       },
       "explanations": {
-        "a": "Autocorrelation computation is not unique to maximum likelihood.",
-        "b": "This is correct; joint estimation of AR and MA parameters involves non-linear optimization.",
-        "c": "While an issue, this is not the primary computational challenge.",
-        "d": "Maximum likelihood does not require strict Gaussianity."
+        "a": "DFT points aren't reduced — segmenting is the key idea.",
+        "b": "Shorter segments reduce resolution, not improve it.",
+        "c": "Correct — Bartlett reduces variance via averaging at the cost of resolution.",
+        "d": "Bartlett does not involve overlapping or cause time-domain distortion."
       },
-      "correctAnswer": "b",
-      "difficulty": "advanced"
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
     },
     {
-      "question": "9. How does overfitting manifest in ARMA model validation?",
+      "question": "4. In Welch’s method, how does the use of overlapping segments influence the spectral estimate?",
       "answers": {
-        "a": "The model exhibits poor predictive performance on unseen data.",
-        "b": "The residuals of the model become uncorrelated.",
-        "c": "The model fits noise in the training data as part of the signal.",
-        "d": "The model's order becomes too low to capture dependencies."
+        "a": "It increases variance due to redundant data.",
+        "b": "It decreases resolution due to segment dependency.",
+        "c": "It reduces variance by increasing the number of averaged estimates.",
+        "d": "It improves resolution by narrowing the FFT bin width."
       },
       "explanations": {
-        "a": "This is an indirect consequence of overfitting.",
-        "b": "Uncorrelated residuals indicate good model fit.",
-        "c": "This is correct; overfitting models noise as signal.",
-        "d": "Overfitting typically involves too high, not low, order."
+        "a": "Overlapping segments increase the number of segments, improving variance.",
+        "b": "Resolution is affected by segment length, not overlap.",
+        "c": "Correct — more overlapping segments → more averaging → lower variance.",
+        "d": "Resolution depends on segment length, not FFT bin width."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "5. When applying a window in a windowed periodogram, what is the **key effect** on the frequency domain representation?",
+      "answers": {
+        "a": "It improves resolution by narrowing frequency peaks.",
+        "b": "It reduces spectral leakage by tapering time-domain edges.",
+        "c": "It enhances high-frequency components by boosting gain.",
+        "d": "It increases FFT accuracy by zero-padding the signal."
+      },
+      "explanations": {
+        "a": "Windows typically widen the main lobe (reduce resolution).",
+        "b": "Correct — tapering the signal reduces discontinuities → less leakage.",
+        "c": "Windowing does not boost specific frequency bands.",
+        "d": "Windowing and zero-padding are separate processes."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "6. The correlogram method assumes a key property about the signal to compute the PSD. What is that assumption?",
+      "answers": {
+        "a": "The signal is strictly periodic.",
+        "b": "The signal is white and Gaussian.",
+        "c": "The signal is wide-sense stationary.",
+        "d": "The signal is band-limited in time."
+      },
+      "explanations": {
+        "a": "Correlogram works for stochastic signals — periodicity is not required.",
+        "b": "Gaussianity is not required, though it helps in some contexts.",
+        "c": "Correct — WSS ensures the autocorrelation depends only on lag.",
+        "d": "Time band-limiting affects resolution but isn't assumed by correlogram."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "7. Which of the following best distinguishes the Blackman-Tukey method from the correlogram?",
+      "answers": {
+        "a": "It uses overlapping segments instead of full-length autocorrelation.",
+        "b": "It estimates autocorrelation using FFT of each segment.",
+        "c": "It applies a window to the autocorrelation before computing the PSD.",
+        "d": "It does not require the assumption of stationarity."
+      },
+      "explanations": {
+        "a": "That’s a Welch technique.",
+        "b": "FFT is used after autocorrelation, not for computing it.",
+        "c": "Correct — the key idea in Blackman-Tukey is smoothing Rxx[n] with a window.",
+        "d": "Stationarity is assumed in both methods."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "8. What is a key limitation of the windowed periodogram despite its leakage-reduction capability?",
+      "answers": {
+        "a": "It requires zero-padding to estimate the spectrum.",
+        "b": "It does not improve variance compared to the basic periodogram.",
+        "c": "It introduces high bias in the estimated power.",
+        "d": "It is computationally inefficient compared to parametric methods."
+      },
+      "explanations": {
+        "a": "Zero-padding is optional, not required.",
+        "b": "Correct — windowing reduces leakage but doesn’t reduce variance; averaging is needed.",
+        "c": "Bias depends on the window and data, not necessarily high.",
+        "d": "It's efficient; parametric methods have different trade-offs."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "9. In Welch's method, which configuration would most effectively balance resolution and variance reduction?",
+      "answers": {
+        "a": "Long non-overlapping segments with no windowing.",
+        "b": "Short overlapping segments with rectangular windows.",
+        "c": "Moderate-length overlapping segments with tapering windows like Hanning.",
+        "d": "Full-length segments with zero-padding and Kaiser window."
+      },
+      "explanations": {
+        "a": "No overlap = less averaging → higher variance.",
+        "b": "Short segments = lower resolution, rectangular window = more leakage.",
+        "c": "Correct — this balances averaging (variance reduction) and leakage control (via window).",
+        "d": "Zero-padding doesn’t improve variance; full length = fewer averages."
       },
       "correctAnswer": "c",
       "difficulty": "advanced"
     },
     {
-      "question": "10. What is the significance of the partial autocorrelation function (PACF) in ARMA model selection?",
+      "question": "10. Which method is most appropriate when the goal is to estimate PSD from autocorrelation with minimal spectral leakage and controlled resolution?",
       "answers": {
-        "a": "It identifies the order of the MA component.",
-        "b": "It identifies the order of the AR component.",
-        "c": "It validates the stationarity of the ARMA process.",
-        "d": "It determines the combined order of AR and MA components."
+        "a": "Windowed Periodogram",
+        "b": "Welch Method",
+        "c": "Blackman-Tukey Method",
+        "d": "Bartlett Method"
       },
       "explanations": {
-        "a": "PACF is used for AR order selection, not MA.",
-        "b": "This is correct; PACF is used to identify AR order.",
-        "c": "Stationarity is determined by other means, not PACF.",
-        "d": "PACF does not determine combined order."
+        "a": "Windowed periodograms directly estimate PSD, not via autocorrelation.",
+        "b": "Welch doesn’t use Rxx — it averages periodograms.",
+        "c": "Correct — Blackman-Tukey smooths the autocorrelation before FFT, controlling leakage and variance.",
+        "d": "Bartlett splits signal into segments, not based on autocorrelation."
       },
-      "correctAnswer": "b",
+      "correctAnswer": "c",
       "difficulty": "advanced"
     }
   ]

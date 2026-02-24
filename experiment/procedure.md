@@ -7,32 +7,34 @@
 </head>
 <body>
   <ul>
-    Choose the spectral estimation method from the numbered Simulation Page options:
-        <li><strong>1. Spectral Estimation using AR-Modeled Yule-Walker Method:</strong> Click to open a new window and perform spectral estimation of the input signal using the AR-Modeled (autoregressive) Yule-Walker method.</li>
-        <li><strong>2. Compare Different Spectral Estimation Methods with AR-Modeled Yule-Walker Method:</strong> Click to open a new window to compare the PSD of the input signal across multiple methods, including Periodogram, Correlogram, Bartlett, Blackman-Tukey, Welch, and AR-Modeled Yule-Walker.</li>
+  Choose the spectral estimation method from the numbered Simulation Page options:
+        <li><strong>1. Windowed Periodogram:</strong> Click to open a new window to perform periodogram analysis on the input signal.</li>
+        <li><strong>2. Correlogram:</strong> Click to open a new window to perform correlogram-based PSD estimation.</li>
+        <li><strong>3. Bartlett's Method:</strong> Click to open a new window to perform Bartlett’s PSD estimation.</li>
+        <li><strong>4. Blackman-Tukey Method:</strong> Click to open a new window to perform Blackman-Tukey PSD estimation.</li>
+        <li><strong>5. Welch's Method:</strong> Click to open a new window to perform Welch’s PSD estimation.</li>
     <li>
       <strong>Input Parameters:</strong>
       <ul>
-        <li><strong>Input Signal(s):</strong> Specify and input the frequency values of the signal(s).</li>
-        <li><strong>Operations:</strong> Use the input field to select various operations, such as Fourier addition, subtraction, multiplication, and convolution.</li>
-        <li>
-          <strong>AR Model Order(s):</strong> Enter the order(s) of the autoregressive (AR) model to compute the power spectral density (PSD).
-        </li>
-        <li>
-          <strong>SNR (in dB):</strong> Specify the desired Signal-to-Noise Ratio (SNR) in decibels (dB).
-        </li>
+        <li><strong>Input Signal(s):</strong> Enter the signal frequency (Hz), sampling frequency (Hz), and the signal length. For rectangular or triangular pulse signals, also specify the pulse width in seconds.</li>
+        <li><strong>Window Type:</strong> Select a window type (e.g., Rectangular, Hann, Hamming) from the dropdown menu, and provide the window size.</li>
+        <li><strong>SNR (in dB):</strong> Enter the desired Signal-to-Noise Ratio (SNR) in decibels (dB).</li>
       </ul>
     </li>
     <br/>
     <h3><strong>Steps:</strong></h3>
     <li>
+    <strong>a. For Windowed Periodogram, Correlogram, Bartlett's Method, Blackman-Tukey, & Welch's Method</strong>
+    <br/>
       <strong>1. Generate Input Signal(s):</strong> 
-      Click the <em>“Generate Input Signal”</em> button to create the input signals. Choose the base signal, such as a sine wave, cosine wave, and select the operation from the dropdown menus.
+      Click the <em>“Generate Input Signal”</em> button to create the input signal. Choose a base signal (e.g., sine, cosine, rectangular, or triangular pulses), and provide the frequency (Hz), sampling frequency (Hz), signal length, window type, window size, and pulse width (for rectangular and triangular pulses) etc.
     </li>
     <li>
-      <strong>2. Display the estimated AR coefficients and the PSD:</strong> 
-      Click the <em>“Simulate”</em> button to visualize the estimated AR coefficients and power spectral density (PSD) plot of the noisy input signal.
+      <strong>2. Display the PSD Plot:</strong> 
+      Click the <em>“Simulate”</em> button to view the power spectral density (PSD) plot of the noisy input signal.
     </li>
+        <strong>b. To Compare all of the above Methods, Choose Option 6 <i>"Compare Different Spectral Estimation Methods"</i> on the Simulation Page </strong>
   </ul>
 </body>
 </html>
+
