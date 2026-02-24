@@ -7,6 +7,9 @@
 </head>
 <body>
   <ul>
+    Choose the spectral estimation method from the numbered Simulation Page options:
+        <li><strong>1. Spectral Estimation using AR-Modeled Yule-Walker Method:</strong> Click to open a new window and perform spectral estimation of the input signal using the AR-Modeled (autoregressive) Yule-Walker method.</li>
+        <li><strong>2. Compare Different Spectral Estimation Methods with AR-Modeled Yule-Walker Method:</strong> Click to open a new window to compare the PSD of the input signal across multiple methods, including Periodogram, Correlogram, Bartlett, Blackman-Tukey, Welch, and AR-Modeled Yule-Walker.</li>
     <li>
       <strong>Input Parameters:</strong>
       <ul>
