@@ -23,15 +23,14 @@
 
 <body>
 
-<h2>Yule–Walker Estimation (Kay / Proakis Convention)</h2>
+<h2>Yule–Walker Estimation</h2>
 
 <h3>Theory</h3>
 
 <p>
-In the standard signal processing literature (e.g., Kay, Proakis), an autoregressive (AR)
-process is modeled as a linear combination of past samples plus white noise. This is a
+An autoregressive (AR) process is modeled as a linear combination of past samples plus white noise. The Yule–Walker estimation method is a
 <strong>parametric spectral estimation</strong> approach, where the power spectral density (PSD)
-is derived from the model parameters.
+is obtained from the estimated AR model parameters.
 </p>
 
 <p>
@@ -142,7 +141,6 @@ $$
 
 <p>
 The matrix is Toeplitz because each element depends only on the lag difference.
-This structure allows efficient solutions using algorithms such as Levinson–Durbin.
 </p>
 
 <h3>Noise Variance</h3>
