@@ -1,175 +1,175 @@
 {
-  "version": 2.0,
+  "version": 3.0,
   "questions": [
     {
-      "question": "1. What is the primary advantage of using Yule-Walker equations for AR model parameter estimation?",
+      "question": "What characterizes the 'parametric spectral estimation' approach as used in the Yule-Walker method?",
       "answers": {
-        "a": "They minimize the mean square error of the signal.",
-        "b": "They allow direct computation of AR coefficients from autocorrelation.",
-        "c": "They provide a closed-form solution for both AR and MA coefficients.",
-        "d": "They reduce the computational complexity of ARMA models."
+        "a": "The spectrum is calculated directly from the raw time-domain samples.",
+        "b": "The Power Spectral Density is obtained from estimated AR model parameters.",
+        "c": "It ignores the autocorrelation function to save computation time.",
+        "d": "It assumes the signal is non-stationary and has a varying mean."
       },
       "explanations": {
-        "a": "Minimizing the mean square error is associated with least squares methods.",
-        "b": "This is correct; Yule-Walker equations rely on autocorrelation for AR coefficient estimation.",
-        "c": "Yule-Walker equations are specifically for AR models, not MA models.",
-        "d": "While computationally efficient, this is not their primary advantage."
+        "a": "Incorrect. That would describe non-parametric methods.",
+        "b": "Correct! This method is defined as a parametric approach where the PSD is derived from the AR model parameters.",
+        "c": "Incorrect. The method relies heavily on the autocorrelation function.",
+        "d": "Incorrect. The theory explicitly assumes the process is Wide-Sense Stationary (WSS) and zero-mean."
       },
       "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
-      "question": "2. Which condition must be satisfied for the ARMA process to be wide-sense stationary?",
+      "question": "For a Wide-Sense Stationary (WSS) process, what does the value of the autocorrelation function R[k] depend on?",
       "answers": {
-        "a": "The AR coefficients must sum to 1.",
-        "b": "The roots of the AR polynomial must lie outside the unit circle.",
-        "c": "The MA coefficients must be symmetric.",
-        "d": "The autocorrelation function must converge to zero at infinity."
+        "a": "The specific time index 'n' at which the signal is measured.",
+        "b": "The total length of the data record being analyzed.",
+        "c": "Only the lag 'k' between the samples.",
+        "d": "The phase of the frequency response denominator."
       },
       "explanations": {
-        "a": "This is not a condition for stationarity but for unit root processes.",
-        "b": "This ensures the ARMA process is stationary.",
-        "c": "Symmetry is not a requirement for stationarity.",
-        "d": "While this is true, it is a consequence, not a condition."
+        "a": "Incorrect. If it depended on 'n', the process would likely be non-stationary.",
+        "b": "Incorrect. While data length affects estimation quality, the function definition depends on the lag.",
+        "c": "Correct! For a WSS process, R[k] depends only on the lag k.",
+        "d": "Incorrect. The phase is related to the PSD, but the autocorrelation depends on the lag."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "During the derivation of the Yule-Walker equations, why is the expectation of e[n] multiplied by x[n-m] equal to zero for m greater than or equal to 1?",
+      "answers": {
+        "a": "Because the signal x[n] is always zero.",
+        "b": "Because white noise e[n] is uncorrelated with past samples.",
+        "c": "Because the system has no poles.",
+        "d": "Because the autocorrelation function is periodic."
+      },
+      "explanations": {
+        "a": "Incorrect. x[n] is a random process, not a constant zero.",
+        "b": "Correct! White noise e[n] is uncorrelated with past samples, which simplifies the equation for lags of 1 or more.",
+        "c": "Incorrect. The AR model is an all-pole system.",
+        "d": "Incorrect. While frequency is periodic, this specific property is due to the nature of white noise."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "What does the noise variance represent in the context of the AR model?",
+      "answers": {
+        "a": "The maximum frequency of the signal.",
+        "b": "The portion of the signal power that cannot be explained by the AR model.",
+        "c": "The sum of all AR coefficients.",
+        "d": "The average value of the autocorrelation function."
+      },
+      "explanations": {
+        "a": "Incorrect. Frequency is determined by the denominator of the PSD formula.",
+        "b": "Correct! The theory explains that this measures the leftover uncertainty or randomness not captured by past samples.",
+        "c": "Incorrect. The coefficients are used in the calculation, but they do not equal the variance.",
+        "d": "Incorrect. It is calculated using R[0] and the coefficients, but it is not an average of R[k]."
       },
       "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
-      "question": "3. How does the order of the AR and MA components in an ARMA(p,q) model affect its spectral representation?",
+      "question": "According to the Power Spectral Density (PSD) formula, what causes 'peaks' to appear in the spectrum?",
       "answers": {
-        "a": "The AR order determines the location of poles, while the MA order determines the location of zeros.",
-        "b": "Both AR and MA orders determine the location of zeros only.",
-        "c": "The AR order determines the frequency bandwidth, while the MA order determines the amplitude.",
-        "d": "The AR and MA orders have no effect on the spectral representation."
+        "a": "Frequencies where the denominator becomes very small.",
+        "b": "Frequencies where the noise variance becomes zero.",
+        "c": "When the model order 'p' is reduced to zero.",
+        "d": "When the signal is no longer wide-sense stationary."
       },
       "explanations": {
-        "a": "This is correct; AR affects poles, and MA affects zeros in the frequency domain.",
-        "b": "AR primarily affects poles, not zeros.",
-        "c": "This is incorrect; orders define the structure, not specific attributes like bandwidth.",
-        "d": "This is incorrect; the orders are critical in spectral representation."
+        "a": "Correct! Frequencies where the denominator is small correspond to peaks in the spectrum.",
+        "b": "Incorrect. If noise variance were zero, the entire PSD would be zero.",
+        "c": "Incorrect. Reducing the order would simplify the spectrum but not necessarily create peaks.",
+        "d": "Incorrect. WSS is a requirement for the derivation, not a cause for spectral peaks."
       },
       "correctAnswer": "a",
       "difficulty": "intermediate"
     },
     {
-      "question": "4. What mathematical property of the autocorrelation matrix ensures the solvability of Yule-Walker equations for AR models?",
+      "question": "What defines an 'all-pole system' as used in Yule-Walker estimation?",
       "answers": {
-        "a": "Positivity.",
-        "b": "Symmetry.",
-        "c": "Toeplitz structure.",
-        "d": "Positive definiteness."
+        "a": "A system where behavior is determined only by the numerator polynomial.",
+        "b": "A system whose transfer function has only poles and no finite zeros.",
+        "c": "A system that only processes white noise and no past samples.",
+        "d": "A system that is only used for complex-valued signals."
       },
       "explanations": {
-        "a": "Positivity alone is not sufficient for solvability.",
-        "b": "Symmetry is a property of the autocorrelation matrix but does not guarantee solvability.",
-        "c": "Toeplitz structure simplifies computations but does not ensure solvability.",
-        "d": "This is correct; positive definiteness ensures a unique solution."
-      },
-      "correctAnswer": "d",
-      "difficulty": "intermediate"
-    },
-    {
-      "question": "5. What is the primary limitation of the Yule-Walker method in estimating ARMA model parameters?",
-      "answers": {
-        "a": "It assumes that the input data is Gaussian distributed.",
-        "b": "It cannot estimate MA coefficients directly.",
-        "c": "It is computationally inefficient for large datasets.",
-        "d": "It is only applicable to non-stationary processes."
-      },
-      "explanations": {
-        "a": "Yule-Walker does not require Gaussian assumptions.",
-        "b": "This is correct; Yule-Walker only estimates AR coefficients.",
-        "c": "Yule-Walker is computationally efficient due to its reliance on autocorrelation.",
-        "d": "It is specifically designed for stationary processes."
+        "a": "Incorrect. All-pole systems are determined by the denominator polynomial.",
+        "b": "Correct! An all-pole system is defined as having only poles, meaning the AR coefficients define the pole locations.",
+        "c": "Incorrect. Past samples are essential to the AR model formula.",
+        "d": "Incorrect. The theory applies to both real and complex-valued signals."
       },
       "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
-      "question": "6. Why does the Burg method outperform Yule-Walker equations in certain AR parameter estimations?",
+      "question": "In discrete-time signal processing, why is the normalized frequency 'f' typically restricted to the interval between -1/2 and 1/2?",
       "answers": {
-        "a": "It simultaneously estimates AR and MA coefficients.",
-        "b": "It minimizes forward and backward prediction errors.",
-        "c": "It avoids the computation of the autocorrelation function.",
-        "d": "It directly handles non-stationary processes."
+        "a": "Because the signal has zero mean.",
+        "b": "Because the autocorrelation matrix is Toeplitz.",
+        "c": "Because the frequency response is periodic.",
+        "d": "Because white noise has a variance of 1."
       },
       "explanations": {
-        "a": "Burg method estimates only AR coefficients.",
-        "b": "This is correct; Burg minimizes errors in both directions.",
-        "c": "Burg still uses autocorrelation but in an implicit manner.",
-        "d": "Burg requires stationarity as much as Yule-Walker."
-      },
-      "correctAnswer": "b",
-      "difficulty": "intermediate"
-    },
-    {
-      "question": "7. In ARMA(p,q) modeling, what is the consequence of underestimating the order of the MA component?",
-      "answers": {
-        "a": "The model might produce biased estimates of the AR coefficients.",
-        "b": "The model might overfit the data.",
-        "c": "The model might fail to capture short-term dependencies.",
-        "d": "The model might violate the stationarity condition."
-      },
-      "explanations": {
-        "a": "Bias is more associated with incorrect AR order.",
-        "b": "Underestimation does not lead to overfitting.",
-        "c": "This is correct; the MA component captures short-term dependencies.",
-        "d": "Stationarity is not affected by the MA order."
-      },
-      "correctAnswer": "c",
-      "difficulty": "intermediate"
-    },
-    {
-      "question": "8. What is the primary computational challenge in fitting an ARMA model using the maximum likelihood estimation method?",
-      "answers": {
-        "a": "The need to compute the autocorrelation function.",
-        "b": "The non-linear optimization required for joint AR and MA parameter estimation.",
-        "c": "The inability to handle missing data in the input signal.",
-        "d": "The requirement for the input signal to be strictly Gaussian."
-      },
-      "explanations": {
-        "a": "Autocorrelation computation is not unique to maximum likelihood.",
-        "b": "This is correct; joint estimation of AR and MA parameters involves non-linear optimization.",
-        "c": "While an issue, this is not the primary computational challenge.",
-        "d": "Maximum likelihood does not require strict Gaussianity."
-      },
-      "correctAnswer": "b",
-      "difficulty": "advanced"
-    },
-    {
-      "question": "9. How does overfitting manifest in ARMA model validation?",
-      "answers": {
-        "a": "The model exhibits poor predictive performance on unseen data.",
-        "b": "The residuals of the model become uncorrelated.",
-        "c": "The model fits noise in the training data as part of the signal.",
-        "d": "The model's order becomes too low to capture dependencies."
-      },
-      "explanations": {
-        "a": "This is an indirect consequence of overfitting.",
-        "b": "Uncorrelated residuals indicate good model fit.",
-        "c": "This is correct; overfitting models noise as signal.",
-        "d": "Overfitting typically involves too high, not low, order."
+        "a": "Incorrect. Zero mean is a separate assumption about the signal amplitude.",
+        "b": "Incorrect. Toeplitz structure relates to the matrix form, not frequency range.",
+        "c": "Correct! Due to periodicity, values outside this principal interval represent repeated information.",
+        "d": "Incorrect. Noise variance can be any positive value."
       },
       "correctAnswer": "c",
       "difficulty": "advanced"
     },
     {
-      "question": "10. What is the significance of the partial autocorrelation function (PACF) in ARMA model selection?",
+      "question": "What is the final step in the Yule-Walker estimation process?",
       "answers": {
-        "a": "It identifies the order of the MA component.",
-        "b": "It identifies the order of the AR component.",
-        "c": "It validates the stationarity of the ARMA process.",
-        "d": "It determines the combined order of AR and MA components."
+        "a": "Subtracting the noise variance from the autocorrelation function.",
+        "b": "Computing the spectrum analytically from the resulting model.",
+        "c": "Increasing the model order until the resolution is high.",
+        "d": "Converting the angular frequency into white noise samples."
       },
       "explanations": {
-        "a": "PACF is used for AR order selection, not MA.",
-        "b": "This is correct; PACF is used to identify AR order.",
-        "c": "Stationarity is determined by other means, not PACF.",
-        "d": "PACF does not determine combined order."
+        "a": "Incorrect. Noise variance is calculated after the coefficients, but the final goal is spectral estimation.",
+        "b": "Correct! The method determines AR parameters and then computes the spectrum analytically.",
+        "c": "Incorrect. There is no description of an iterative process for increasing order.",
+        "d": "Incorrect. Angular frequency is a mapping tool, not a conversion target for the process."
       },
       "correctAnswer": "b",
-      "difficulty": "advanced"
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How is the role of the 'denominator polynomial' described in an all-pole system?",
+      "answers": {
+        "a": "It represents the leftover randomness that the model cannot explain.",
+        "b": "It entirely determines the behavior of the system.",
+        "c": "It identifies the finite zeros within the transfer function.",
+        "d": "It ensures that the frequency interval is restricted to 2 * pi."
+      },
+      "explanations": {
+        "a": "Incorrect. This describes the noise variance, not the polynomial.",
+        "b": "Correct! An all-pole system's behavior is entirely determined by the denominator polynomial.",
+        "c": "Incorrect. It is explicitly stated that an all-pole system has no finite zeros.",
+        "d": "Incorrect. While frequency is periodic, the interval restriction is due to the nature of discrete-time processing, not the polynomial itself."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which of the following is an advantage of the Yule-Walker estimation method?",
+      "answers": {
+        "a": "It can estimate the mean of a non-stationary signal.",
+        "b": "It provides high spectral resolution and smooth estimates.",
+        "c": "It is only efficient for very long data records.",
+        "d": "It eliminates the need for calculating autocorrelation."
+      },
+      "explanations": {
+        "a": "Incorrect. It assumes WSS and zero-mean.",
+        "b": "Correct! 'High spectral resolution' and 'Produces smooth spectral estimates' are core advantages.",
+        "c": "Incorrect. It is 'Efficient for short data records.'",
+        "d": "Incorrect. Autocorrelation is the primary input required for the equations."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     }
   ]
 }

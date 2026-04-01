@@ -2,7 +2,7 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "1. What does the AR in ARMA stand for?",
+      "question": "What does the AR in ARMA stand for?",
       "answers": {
         "a": "Autoregressive.",
         "b": "Auto-relative.",
@@ -19,7 +19,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "2. What is the primary purpose of the Yule-Walker method?",
+      "question": "What is the primary purpose of the Yule-Walker method?",
       "answers": {
         "a": "To compute the Fourier Transform of a signal.",
         "b": "To estimate the coefficients of an AR model.",
@@ -36,7 +36,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "3. What does the MA in ARMA stand for?",
+      "question": "What does the MA in ARMA stand for?",
       "answers": {
         "a": "Moving Average.",
         "b": "Mean Adjustment.",
@@ -53,7 +53,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "4. Which of the following is a key assumption of ARMA modeling?",
+      "question": "Which of the following is a key assumption of ARMA modeling?",
       "answers": {
         "a": "The process is non-stationary.",
         "b": "The process is wide-sense stationary.",
@@ -70,7 +70,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "5. What role does the autocorrelation function play in the Yule-Walker equations?",
+      "question": "What role does the autocorrelation function play in the Yule-Walker equations?",
       "answers": {
         "a": "It estimates the noise variance in the model.",
         "b": "It provides the coefficients for the MA part of the model.",
@@ -87,88 +87,88 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "6. What is the general form of an AR(2) model? In an AR(2) model, x(t) represents the current value, x(t-1) and x(t-2) are the previous values, a1 and a2 are the coefficients that determine the influence of past values, and ε(t) is the noise term that represents random variation.",
+      "question": "What is the general additive form of an AR(2) model?",
       "answers": {
-        "a": "x(t) = ε(t) + a<sub>1</sub>x(t<sub>-1</sub>) + a<sub>2</sub>x(t<sub>-2</sub>).",
-        "b": "x(t) = ε(t) - a<sub>1</sub>x(t<sub>-1</sub>) - a<sub>2</sub>x(t<sub>-2</sub>).",
-        "c": "x(t) = ε(t) + a<sub>1</sub>x(t<sub>-1</sub>) - a<sub>2</sub>x(t<sub>-2</sub>).",
-        "d": "x(t) = a<sub>1</sub>x(t<sub>-1</sub>) + a<sub>2</sub>x(t<sub>-2</sub>)."
+        "a": "x(t) = a₁x(t-1) + a₂x(t-2) + ε(t)",
+        "b": "x(t) = ε(t) - a₁x(t-1) - a₂x(t-2)",
+        "c": "x(t) = ε(t) + a₁x(t-1) - a₂x(t-2)",
+        "d": "x(t) = a₁x(t-1) + a₂x(t-2)"
       },
       "explanations": {
-        "a": "This is the correct representation of an AR(2) model with autoregressive terms and noise.",
-        "b": "The coefficients are not negative in the general form.",
-        "c": "The signs of the coefficients are not mixed.",
-        "d": "The noise term is missing in this representation."
+        "a": "Correct! This is the standard representation where the current value is a linear combination of the two previous values plus white noise.",
+        "b": "Incorrect. While some DSP filters use negative signs for feedback, the standard statistical AR model is additive.",
+        "c": "Incorrect. The signs are not mixed by default in the general definition.",
+        "d": "Incorrect. This is a deterministic difference equation; an AR process must include the random noise term ε(t)."
       },
       "correctAnswer": "a",
       "difficulty": "intermediate"
     },
     {
-      "question": "7. What does the partial autocorrelation function (PACF) indicate in time series analysis?",
+      "question": "What does the Yule–Walker method estimate in an AR process?",
       "answers": {
-        "a": "The lag at which the signal becomes stationary.",
-        "b": "The direct relationship between a variable and its lagged values.",
-        "c": "The overall dependence of the variable on all its past values.",
-        "d": "The frequency components of the time series."
+        "a": "The moving average coefficients of the signal",
+        "b": "The AR coefficients and driving noise variance",
+        "c": "The zero-crossings of the signal",
+        "d": "The cumulative sum of past samples"
       },
       "explanations": {
-        "a": "Stationarity is not determined by the PACF.",
-        "b": "The PACF measures the direct relationship, removing indirect effects.",
-        "c": "This describes the autocorrelation function, not the PACF.",
-        "d": "Frequency components are unrelated to PACF."
+        "a": "Incorrect — Yule–Walker targets AR, not MA coefficients.",
+        "b": "Correct — it estimates the AR coefficients φ_k and the driving noise variance σ_e^2.",
+        "c": "Incorrect — zero-crossings are unrelated to Yule–Walker.",
+        "d": "Incorrect — cumulative sums are not involved in AR parameter estimation."
       },
       "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
-      "question": "8. How is the order of an AR model determined from the PACF?",
+      "question": "Why is the Yule–Walker matrix Toeplitz?",
       "answers": {
-        "a": "By identifying the lag at which the PACF becomes zero.",
-        "b": "By finding the lag at which the PACF peaks.",
-        "c": "By counting the number of significant lags in the PACF.",
-        "d": "By evaluating the frequency of oscillations in the PACF."
+        "a": "Because each row is identical",
+        "b": "Because each element depends only on the lag difference",
+        "c": "Because it is a diagonal matrix",
+        "d": "Because it contains only zeros and ones"
       },
       "explanations": {
-        "a": "The order corresponds to the lag where the PACF drops to zero after significant values.",
-        "b": "Peaks do not determine model order.",
-        "c": "Significant lags indicate the order of the AR model.",
-        "d": "Oscillations are not relevant to determining order."
+        "a": "Incorrect — rows are not identical, but symmetric in a special way.",
+        "b": "Correct — Toeplitz structure arises since R[m-k] depends only on lag difference.",
+        "c": "Incorrect — it is not diagonal.",
+        "d": "Incorrect — elements are autocorrelations, not just zeros and ones."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How is the AR model order typically determined?",
+      "answers": {
+        "a": "By counting the number of poles in the PSD",
+        "b": "By the lag after which the autocorrelation decays to zero",
+        "c": "By selecting a p that balances model accuracy and noise variance",
+        "d": "By using the maximum amplitude of the signal"
+      },
+      "explanations": {
+        "a": "Incorrect — pole counting is related to frequency response but not order selection directly.",
+        "b": "Incorrect — autocorrelation decay is not the sole criterion.",
+        "c": "Correct — model order p is chosen to fit the signal well without overfitting noise.",
+        "d": "Incorrect — amplitude is unrelated to AR order."
       },
       "correctAnswer": "c",
-      "difficulty": "intermediate"
+      "difficulty": "advanced"
     },
     {
-      "question": "9. Which of the following is true about ARMA models?",
+      "question": "Which feature of the AR process determines the shape of its PSD?",
       "answers": {
-        "a": "They are suitable for non-stationary processes.",
-        "b": "They combine autoregressive and moving average components.",
-        "c": "They are purely autoregressive models.",
-        "d": "They require a zero-mean time series."
+        "a": "The AR coefficients φ_k that define the all-pole filter",
+        "b": "The sample mean of the signal",
+        "c": "The cumulative sum of residuals",
+        "d": "The maximum amplitude of the autocorrelation function"
       },
       "explanations": {
-        "a": "ARMA models are suitable for stationary processes.",
-        "b": "ARMA models combine AR and MA components.",
-        "c": "ARMA includes both AR and MA terms.",
-        "d": "A zero mean is not a strict requirement."
+        "a": "Correct — φ_k define the poles, which shape the frequency response and PSD.",
+        "b": "Incorrect — mean does not affect the spectral shape.",
+        "c": "Incorrect — residual sums are not used to compute PSD shape.",
+        "d": "Incorrect — maximum autocorrelation is not sufficient to determine PSD."
       },
-      "correctAnswer": "b",
-      "difficulty": "intermediate"
-    },
-    {
-      "question": "10. What is a key limitation of the Yule-Walker method?",
-      "answers": {
-        "a": "It cannot handle stationary signals.",
-        "b": "It assumes a specific order for the AR model.",
-        "c": "It requires the MA component to be known.",
-        "d": "It does not converge for large datasets."
-      },
-      "explanations": {
-        "a": "The method is specifically designed for stationary signals.",
-        "b": "The Yule-Walker method requires the AR order to be specified beforehand.",
-        "c": "The method estimates AR coefficients, not MA components.",
-        "d": "The method works well with large datasets."
-      },
-      "correctAnswer": "b",
+      "correctAnswer": "a",
       "difficulty": "advanced"
     }
   ]
