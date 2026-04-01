@@ -1,0 +1,702 @@
+<!DOCTYPE html><html lang="en"><head>
+      <!--Google Tag Manager-->
+      <script class="gtm">
+        var dataLayer = [{
+        'labName': 'Virtual Lab',
+        'discipline': 'Test',
+        'college': 'IITD',
+        'phase': 'Testing',
+        'expName': 'FOR A BROADBAND, NARROWBAND AR PROCESS AND SUM OF SINUSOIDS EVALUATE SPECTRAL
+    ESTIMATES BY EVALUATING VARIOUS PARAMETERS USING APPROPRIATE METHOD SUCH AS YULE
+    WALKER',
+        'expShortName': 'arma-process'
+        }];
+    
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5NMQ9NQ');
+      </script>
+      <!--End Google Tag Manager-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    
+    	<meta name="experiment-short-name" content="arma-process">
+    	<meta name="developer-institute" content="IITD">
+    	<meta name="learning-unit" content="FOR A BROADBAND, NARROWBAND AR PROCESS AND SUM OF SINUSOIDS EVALUATE SPECTRAL
+    ESTIMATES BY EVALUATING VARIOUS PARAMETERS USING APPROPRIATE METHOD SUCH AS YULE
+    WALKER">
+    	<meta name="task-name" content="Posttest">
+    
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#4076e0">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#4076e0">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#4076e0">
+    <title>Virtual Labs</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.ico">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=Raleway&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/github-markdown.min.css">
+    <link rel="stylesheet" href="./assets/css/vlabs-style.css">
+    <link rel="stylesheet" href="./assets/css/toast.css">
+    <link rel="stylesheet" href="./assets/katex_assets/katex.min.css">
+    
+    <script src="./assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      h1 {
+      font-size: 1.8rem;
+      }
+      h2 {
+      font-size: 1.4rem;
+      }
+      h3 {
+      font-size: 1.2rem;
+      }
+
+      h2, h3 {
+      font-weight: 800;
+      }
+    </style>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"></head>
+  <body class="p-0 container-fluid vlabs-page d-flex flex-column justify-content-between">
+      <!--Google Tag Manager (noscript)-->
+      <noscript class="gtm">
+        <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-5NMQ9NQ" style="display:none;visibility:hidden" width="0">
+        </iframe>
+      </noscript>
+      <!--End Google Tag Manager (noscript)-->
+  
+      <header class="vlabs-header sticky-top bg-white">
+        <nav class="p-0 navbar navbar-light d-flex align-items-stretch">
+          
+          <button class="navbar-toggler px-4" type="button" onclick="toggle()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="d-flex justify-content-center">        
+            <a href="https://vlab.co.in" class="navbar-brand">
+              <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+            </a>
+          </div>
+          
+          <div id="headerNavbar" class="d-none border-top flex-grow-1 d-lg-flex align-items-center justify-content-end">
+            <div class="svc-rating-display">
+                <rating-display spreadsheetid="1x12nhpp0QvnsA6x-O1sV4IA9SAbfVsq_wiexWkutOmU" sheetname="Experiment-Database" columnname="Experiment Short Name" columnvalue="arma-process" imagesdirectory="/plugins/svc-rating/images/">
+                </rating-display>
+            </div>      <div class="svc-rating-submit">
+                <rating-submit title="Rate" this="" experiment="">
+                </rating-submit>
+            </div>      <bug-report id="bug-report" title="[BUG REPORT] FOR A BROADBAND, NARROWBAND AR PROCESS AND SUM OF SINUSOIDS EVALUATE SPECTRAL
+      ESTIMATES BY EVALUATING VARIOUS PARAMETERS USING APPROPRIATE METHOD SUCH AS YULE
+      WALKER" page-type="assesment" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;IITD&quot;,&quot;expname&quot;:&quot;FOR A BROADBAND, NARROWBAND AR PROCESS AND SUM OF SINUSOIDS EVALUATE SPECTRAL\nESTIMATES BY EVALUATING VARIOUS PARAMETERS USING APPROPRIATE METHOD SUCH AS YULE\nWALKER&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" button_style="border: none; color: #fff; background-color: #288ec8; text-align: center; font-size: 1.05rem; border-radius: 1em;padding: 0.6em 1.2em; margin: 0 10px" position="override" custom_button_class="v-button"></bug-report>
+          </div>
+        </nav>
+      </header>
+      <div class="container-fluid flex-fill d-flex flex-column vlabs-page-main">
+        <div class="row d-flex justify-content-between">
+          <div class="flex-column">
+          <div class="row py-4 px-4 breadcrumbs">
+          	<div class="title is-4 tools">Tools</div>
+          	<span class="mx-2">
+          		<i aria-hidden="true" class="fa fa-angle-right"></i>
+          	</span>
+          	<a href="performance-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Performance Tool</button>
+          	</a>
+          	<a href="validator-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Validation Tool</button>
+          	</a>
+          </div>
+          </div>
+        </div>
+        <div class="row flex-grow-1 d-flex flex-nowrap flex-column flex-lg-row">
+          <div class="modal fade popupmenu" id="popupMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                              <a href="https://vlab.co.in" class="navbar-brand">
+                                  <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+                              </a>
+                          </h5>
+                          <button type="button" class="btn-close align-self-center" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body nav-menu">
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="index.html" class="p-2 ">
+                                      Aim
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="theory.html" class="p-2 ">
+                                      Theory
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="pretest.html" class="p-2 ">
+                                      Pretest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="procedure.html" class="p-2 ">
+                                      Procedure
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="simulation.html" class="p-2 ">
+                                      Simulation
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="posttest.html" class="p-2  current-item ">
+                                      Posttest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="references.html" class="p-2 ">
+                                      References
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="feedback.html" class="p-2 ">
+                                      Feedback
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="nav flex-column sidebar nav-menu flex-shrink-0 px-lg-4 align-items-center align-items-lg-start hidden d-none d-lg-flex" id="menu">
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="index.html" class="p-2 ">
+                        Aim
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="theory.html" class="p-2 ">
+                        Theory
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="pretest.html" class="p-2 ">
+                        Pretest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="procedure.html" class="p-2 ">
+                        Procedure
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="simulation.html" class="p-2 ">
+                        Simulation
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="posttest.html" class="p-2  current-item ">
+                        Posttest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="references.html" class="p-2 ">
+                        References
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="feedback.html" class="p-2 ">
+                        Feedback
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+          </div>          <div class="vlabs-page-content px-5 pb-4 flex-grow-1 markdown-body">
+            <div class="text-center fix-spacing">
+              <h2 id="for-a-broadband-narrowband-ar-process-and-sum-of-sinusoids-evaluate-spectral-estimates-by-evaluating-various-parameters-using-appropriate-method-such-as-yule-walker">For a broadband, narrowband AR process and sum of sinusoids evaluate spectral estimates by evaluating various parameters using appropriate method such as yule walker</h2>
+          
+            </div>
+              <div id="quiz">
+                
+                
+                  <div class="question">
+                    What characterizes the 'parametric spectral estimation' approach as used in the Yule-Walker method?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question0" value="a">
+                      a: The spectrum is calculated directly from the raw time-domain samples.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question0" value="b">
+                      b: The Power Spectral Density is obtained from estimated AR model parameters.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question0" value="c">
+                      c: It ignores the autocorrelation function to save computation time.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question0" value="d">
+                      d: It assumes the signal is non-stationary and has a varying mean.
+                    </label>
+                      
+                  </div>
+                  
+                
+                  <div class="question">
+                    For a Wide-Sense Stationary (WSS) process, what does the value of the autocorrelation function R[k] depend on?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question1" value="a">
+                      a: The specific time index 'n' at which the signal is measured.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question1" value="b">
+                      b: The total length of the data record being analyzed.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question1" value="c">
+                      c: Only the lag 'k' between the samples.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question1" value="d">
+                      d: The phase of the frequency response denominator.
+                    </label>
+                      
+                  </div>
+                  
+                
+                  <div class="question">
+                    During the derivation of the Yule-Walker equations, why is the expectation of e[n] multiplied by x[n-m] equal to zero for m greater than or equal to 1?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question2" value="a">
+                      a: Because the signal x[n] is always zero.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question2" value="b">
+                      b: Because white noise e[n] is uncorrelated with past samples.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question2" value="c">
+                      c: Because the system has no poles.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question2" value="d">
+                      d: Because the autocorrelation function is periodic.
+                    </label>
+                      
+                  </div>
+                  
+                
+                  <div class="question">
+                    What does the noise variance represent in the context of the AR model?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question3" value="a">
+                      a: The maximum frequency of the signal.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question3" value="b">
+                      b: The portion of the signal power that cannot be explained by the AR model.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question3" value="c">
+                      c: The sum of all AR coefficients.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question3" value="d">
+                      d: The average value of the autocorrelation function.
+                    </label>
+                      
+                  </div>
+                  
+                
+                  <div class="question">
+                    According to the Power Spectral Density (PSD) formula, what causes 'peaks' to appear in the spectrum?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question4" value="a">
+                      a: Frequencies where the denominator becomes very small.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question4" value="b">
+                      b: Frequencies where the noise variance becomes zero.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question4" value="c">
+                      c: When the model order 'p' is reduced to zero.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question4" value="d">
+                      d: When the signal is no longer wide-sense stationary.
+                    </label>
+                      
+                  </div>
+                  
+                
+                  <div class="question">
+                    What defines an 'all-pole system' as used in Yule-Walker estimation?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question5" value="a">
+                      a: A system where behavior is determined only by the numerator polynomial.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question5" value="b">
+                      b: A system whose transfer function has only poles and no finite zeros.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question5" value="c">
+                      c: A system that only processes white noise and no past samples.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question5" value="d">
+                      d: A system that is only used for complex-valued signals.
+                    </label>
+                      
+                  </div>
+                  
+                
+                  <div class="question">
+                    In discrete-time signal processing, why is the normalized frequency 'f' typically restricted to the interval between -1/2 and 1/2?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question6" value="a">
+                      a: Because the signal has zero mean.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question6" value="b">
+                      b: Because the autocorrelation matrix is Toeplitz.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question6" value="c">
+                      c: Because the frequency response is periodic.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question6" value="d">
+                      d: Because white noise has a variance of 1.
+                    </label>
+                      
+                  </div>
+                  
+                
+                  <div class="question">
+                    What is the final step in the Yule-Walker estimation process?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question7" value="a">
+                      a: Subtracting the noise variance from the autocorrelation function.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question7" value="b">
+                      b: Computing the spectrum analytically from the resulting model.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question7" value="c">
+                      c: Increasing the model order until the resolution is high.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question7" value="d">
+                      d: Converting the angular frequency into white noise samples.
+                    </label>
+                      
+                  </div>
+                  
+                
+                  <div class="question">
+                    How is the role of the 'denominator polynomial' described in an all-pole system?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question8" value="a">
+                      a: It represents the leftover randomness that the model cannot explain.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question8" value="b">
+                      b: It entirely determines the behavior of the system.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question8" value="c">
+                      c: It identifies the finite zeros within the transfer function.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question8" value="d">
+                      d: It ensures that the frequency interval is restricted to 2 * pi.
+                    </label>
+                      
+                  </div>
+                  
+                
+                  <div class="question">
+                    Which of the following is an advantage of the Yule-Walker estimation method?
+                  </div>
+                  
+                  <div class="answers">
+              <label>
+                <input type="radio" name="question9" value="a">
+                      a: It can estimate the mean of a non-stationary signal.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question9" value="b">
+                      b: It provides high spectral resolution and smooth estimates.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question9" value="c">
+                      c: It is only efficient for very long data records.
+                    </label>
+                      
+              <label>
+                <input type="radio" name="question9" value="d">
+                      d: It eliminates the need for calculating autocorrelation.
+                    </label>
+                      
+                  </div>
+                  
+                
+                </div>  
+                <button id="submit" class="btn btn-primary">Submit Quiz</button>
+                <div id="results"></div>
+          </div>
+            
+            <script>
+              const myQuestions = [{"question":"What characterizes the 'parametric spectral estimation' approach as used in the Yule-Walker method?","answers":{"a":"The spectrum is calculated directly from the raw time-domain samples.","b":"The Power Spectral Density is obtained from estimated AR model parameters.","c":"It ignores the autocorrelation function to save computation time.","d":"It assumes the signal is non-stationary and has a varying mean."},"explanations":{"a":"Incorrect. That would describe non-parametric methods.","b":"Correct! This method is defined as a parametric approach where the PSD is derived from the AR model parameters.","c":"Incorrect. The method relies heavily on the autocorrelation function.","d":"Incorrect. The theory explicitly assumes the process is Wide-Sense Stationary (WSS) and zero-mean."},"correctAnswer":"b","difficulty":"intermediate"},{"question":"For a Wide-Sense Stationary (WSS) process, what does the value of the autocorrelation function R[k] depend on?","answers":{"a":"The specific time index 'n' at which the signal is measured.","b":"The total length of the data record being analyzed.","c":"Only the lag 'k' between the samples.","d":"The phase of the frequency response denominator."},"explanations":{"a":"Incorrect. If it depended on 'n', the process would likely be non-stationary.","b":"Incorrect. While data length affects estimation quality, the function definition depends on the lag.","c":"Correct! For a WSS process, R[k] depends only on the lag k.","d":"Incorrect. The phase is related to the PSD, but the autocorrelation depends on the lag."},"correctAnswer":"c","difficulty":"intermediate"},{"question":"During the derivation of the Yule-Walker equations, why is the expectation of e[n] multiplied by x[n-m] equal to zero for m greater than or equal to 1?","answers":{"a":"Because the signal x[n] is always zero.","b":"Because white noise e[n] is uncorrelated with past samples.","c":"Because the system has no poles.","d":"Because the autocorrelation function is periodic."},"explanations":{"a":"Incorrect. x[n] is a random process, not a constant zero.","b":"Correct! White noise e[n] is uncorrelated with past samples, which simplifies the equation for lags of 1 or more.","c":"Incorrect. The AR model is an all-pole system.","d":"Incorrect. While frequency is periodic, this specific property is due to the nature of white noise."},"correctAnswer":"b","difficulty":"advanced"},{"question":"What does the noise variance represent in the context of the AR model?","answers":{"a":"The maximum frequency of the signal.","b":"The portion of the signal power that cannot be explained by the AR model.","c":"The sum of all AR coefficients.","d":"The average value of the autocorrelation function."},"explanations":{"a":"Incorrect. Frequency is determined by the denominator of the PSD formula.","b":"Correct! The theory explains that this measures the leftover uncertainty or randomness not captured by past samples.","c":"Incorrect. The coefficients are used in the calculation, but they do not equal the variance.","d":"Incorrect. It is calculated using R[0] and the coefficients, but it is not an average of R[k]."},"correctAnswer":"b","difficulty":"intermediate"},{"question":"According to the Power Spectral Density (PSD) formula, what causes 'peaks' to appear in the spectrum?","answers":{"a":"Frequencies where the denominator becomes very small.","b":"Frequencies where the noise variance becomes zero.","c":"When the model order 'p' is reduced to zero.","d":"When the signal is no longer wide-sense stationary."},"explanations":{"a":"Correct! Frequencies where the denominator is small correspond to peaks in the spectrum.","b":"Incorrect. If noise variance were zero, the entire PSD would be zero.","c":"Incorrect. Reducing the order would simplify the spectrum but not necessarily create peaks.","d":"Incorrect. WSS is a requirement for the derivation, not a cause for spectral peaks."},"correctAnswer":"a","difficulty":"intermediate"},{"question":"What defines an 'all-pole system' as used in Yule-Walker estimation?","answers":{"a":"A system where behavior is determined only by the numerator polynomial.","b":"A system whose transfer function has only poles and no finite zeros.","c":"A system that only processes white noise and no past samples.","d":"A system that is only used for complex-valued signals."},"explanations":{"a":"Incorrect. All-pole systems are determined by the denominator polynomial.","b":"Correct! An all-pole system is defined as having only poles, meaning the AR coefficients define the pole locations.","c":"Incorrect. Past samples are essential to the AR model formula.","d":"Incorrect. The theory applies to both real and complex-valued signals."},"correctAnswer":"b","difficulty":"intermediate"},{"question":"In discrete-time signal processing, why is the normalized frequency 'f' typically restricted to the interval between -1/2 and 1/2?","answers":{"a":"Because the signal has zero mean.","b":"Because the autocorrelation matrix is Toeplitz.","c":"Because the frequency response is periodic.","d":"Because white noise has a variance of 1."},"explanations":{"a":"Incorrect. Zero mean is a separate assumption about the signal amplitude.","b":"Incorrect. Toeplitz structure relates to the matrix form, not frequency range.","c":"Correct! Due to periodicity, values outside this principal interval represent repeated information.","d":"Incorrect. Noise variance can be any positive value."},"correctAnswer":"c","difficulty":"advanced"},{"question":"What is the final step in the Yule-Walker estimation process?","answers":{"a":"Subtracting the noise variance from the autocorrelation function.","b":"Computing the spectrum analytically from the resulting model.","c":"Increasing the model order until the resolution is high.","d":"Converting the angular frequency into white noise samples."},"explanations":{"a":"Incorrect. Noise variance is calculated after the coefficients, but the final goal is spectral estimation.","b":"Correct! The method determines AR parameters and then computes the spectrum analytically.","c":"Incorrect. There is no description of an iterative process for increasing order.","d":"Incorrect. Angular frequency is a mapping tool, not a conversion target for the process."},"correctAnswer":"b","difficulty":"intermediate"},{"question":"How is the role of the 'denominator polynomial' described in an all-pole system?","answers":{"a":"It represents the leftover randomness that the model cannot explain.","b":"It entirely determines the behavior of the system.","c":"It identifies the finite zeros within the transfer function.","d":"It ensures that the frequency interval is restricted to 2 * pi."},"explanations":{"a":"Incorrect. This describes the noise variance, not the polynomial.","b":"Correct! An all-pole system's behavior is entirely determined by the denominator polynomial.","c":"Incorrect. It is explicitly stated that an all-pole system has no finite zeros.","d":"Incorrect. While frequency is periodic, the interval restriction is due to the nature of discrete-time processing, not the polynomial itself."},"correctAnswer":"b","difficulty":"intermediate"},{"question":"Which of the following is an advantage of the Yule-Walker estimation method?","answers":{"a":"It can estimate the mean of a non-stationary signal.","b":"It provides high spectral resolution and smooth estimates.","c":"It is only efficient for very long data records.","d":"It eliminates the need for calculating autocorrelation."},"explanations":{"a":"Incorrect. It assumes WSS and zero-mean.","b":"Correct! 'High spectral resolution' and 'Produces smooth spectral estimates' are core advantages.","c":"Incorrect. It is 'Efficient for short data records.'","d":"Incorrect. Autocorrelation is the primary input required for the equations."},"correctAnswer":"b","difficulty":"intermediate"}];
+            </script>
+              <script src="./assets/js/assessment.js"></script>  
+          <div class="bug-report-mobile">
+              <bug-report id="bug-report" title="[BUG REPORT] FOR A BROADBAND, NARROWBAND AR PROCESS AND SUM OF SINUSOIDS EVALUATE SPECTRAL
+          ESTIMATES BY EVALUATING VARIOUS PARAMETERS USING APPROPRIATE METHOD SUCH AS YULE
+          WALKER" page-type="assesment" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;IITD&quot;,&quot;expname&quot;:&quot;FOR A BROADBAND, NARROWBAND AR PROCESS AND SUM OF SINUSOIDS EVALUATE SPECTRAL\nESTIMATES BY EVALUATING VARIOUS PARAMETERS USING APPROPRIATE METHOD SUCH AS YULE\nWALKER&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" position="override" button_style="
+                          position: fixed; 
+                          bottom: 20px;
+                          right: 20px;
+                          z-index: 1;
+                          font-size: 0;
+                          padding: 25px;
+                          border-radius: 50%;
+                          border: none;
+                          background-color: #0fc0ff;
+                          background-image: url(data:image/png;base64,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);
+                          background-repeat: no-repeat;
+                          background-position: center;
+                          background-size: 30px;
+                          filter: invert(1);">
+              </bug-report>
+          </div>        </div>
+      </div>
+      <footer class="text-light pt-2 vlabs-footer d-flex flex-column">
+        <div class="row px-5 mx-0">
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Community Links</span>
+            <a href="https://www.sakshat.ac.in/" class="text-light">Sakshat Portal</a>
+            <a href="http://outreach.vlabs.ac.in/" class="text-light">Outreach Portal</a>
+            <a href="https://vlab.co.in/faq" class="text-light">FAQ: Virtual Labs</a>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Contact Us</span>
+            <span> Phone: General Information: 011-26582050 </span>
+            <span> Email: support@vlabs.ac.in </span>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Follow Us</span>
+            <div class="social-links">
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #55acee;" href="https://twitter.com/TheVirtualLabs">
+      	  <i class="fab fa-twitter"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #3b5998;" href="https://www.facebook.com/Virtual-Labs-IIT-Delhi-301510159983871/">
+      	  <i class="fab fa-facebook"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #e52d27;" href="https://www.youtube.com/watch?v=asxRaOgk6a0">
+      	  <i class="fab fa-youtube"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #2867B2;" href="https://in.linkedin.com/in/virtual-labs-008ba9136">
+      	  <i class="fab fa-linkedin"></i>
+      	</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-0 py-2 text-center" style="font-family: &quot;Open Sans&quot;, sans-serif; background: #212121;">
+          <a class="text-primary font-weight-bold" href="https://www.gnu.org/licenses/agpl-3.0.en.html"> AGPL 3.0 </a>
+          &nbsp;&amp;&nbsp;
+          <a class="text-primary font-weight-bold" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"> Creative Commons (CC BY-NC-SA 4.0) </a>
+        </div>
+      </footer>
+    <script src="./assets/js/toggleSidebar.js"></script>
+    <script src="./assets/js/event-handler.js"></script>
+
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register("sw.js");
+        });
+      }
+    </script>
+  
+
+<script type="module" src="https://cdn.vlabs.ac.in/bug-report/vlabs-bug-report.js"></script><script type="module" src="/exp-arma-process-iitd/plugins/svc-rating/index.js"></script><script type="module" src="/exp-arma-process-iitd/plugins/svc-rating/config.js"></script><script type="module" src="https://apis.google.com/js/api.js"></script></body></html>
