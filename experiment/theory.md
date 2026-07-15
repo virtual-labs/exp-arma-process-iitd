@@ -140,8 +140,7 @@ $$
 </p>
 
 <p>
-The matrix is Toeplitz because each element depends only on the lag difference.
-This structure allows efficient solutions using algorithms such as Levinson–Durbin.
+The autocorrelation matrix is Toeplitz because its entries depend only on the difference between the row and column indices (i.e., the lag). This structured form significantly reduces the computational complexity of solving the Yule–Walker equations through efficient recursive methods such as the Levinson–Durbin algorithm.
 </p>
 
 <h3>Noise Variance</h3>
