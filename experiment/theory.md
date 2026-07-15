@@ -172,11 +172,7 @@ $$
 </p>
 
 <p>
-The denominator corresponds to the frequency response of the all-pole system.
-</p>
-
-<p>
-Frequencies where the denominator is small correspond to peaks in the spectrum.
+The denominator corresponds to the frequency response of the all-pole system. The locations of the poles determine the spectral characteristics of the process. Frequencies at which the denominator has a small magnitude correspond to resonances of the filter, resulting in peaks in the estimated power spectrum. In summary, the AR coefficients control the shape and location of the spectral peaks.
 </p>
 
 <p style="text-align:center;">
@@ -200,9 +196,12 @@ The relationship $\omega = 2\pi f$ converts normalized frequency into angular fr
 <h3>Advantages</h3>
 
 <ul>
-  <li>High spectral resolution</li>
-  <li>Efficient for short data records</li>
-  <li>Produces smooth spectral estimates</li>
+  <li>	Provides high spectral resolution, particularly for short data records.</li>
+<li>	Produces smooth PSD estimates without the leakage commonly observed in periodograms.</li>
+<li>	Requires estimation of only a small number of model parameters.</li>
+<li>	Exploits the Toeplitz structure of the autocorrelation matrix for computationally efficient implementation.</li>
+<li>	Is especially effective for signals that can be accurately represented by an autoregressive model.</li>
+
 </ul>
 
 <p>
