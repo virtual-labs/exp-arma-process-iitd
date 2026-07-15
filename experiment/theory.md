@@ -146,7 +146,7 @@ The autocorrelation matrix is Toeplitz because its entries depend only on the di
 <h3>Noise Variance</h3>
 
 <p>
-Once the AR coefficients are estimated, the driving noise variance is given by:
+Once the AR coefficients are estimated, the variance prediction error is given by:
 </p>
 
 <p style="text-align:center;">
@@ -156,7 +156,7 @@ $$
 </p>
 
 <p>
-This represents the portion of the signal power that cannot be explained by the AR model. In other words, even after using past samples to estimate the current value, there is still some remaining randomness or error. That leftover uncertainty is what the noise variance measures.
+This represents the portion of the signal power that cannot be explained by the AR model. In other words, even after using past samples to estimate the current value, there is still some remaining randomness or error. That leftover uncertainty measures error variance.
 </p>
 
 <h3>Power Spectral Density (PSD)</h3>
