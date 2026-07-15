@@ -28,10 +28,9 @@
 <h3>Theory</h3>
 
 <p>
-In the standard signal processing literature (e.g., Kay, Proakis), an autoregressive (AR)
-process is modeled as a linear combination of past samples plus white noise. This is a
-<strong>parametric spectral estimation</strong> approach, where the power spectral density (PSD)
-is derived from the model parameters.
+  
+As per standard signal processing literature (e.g., Kay, Proakis), many signals can be modeled as autoregressive (AR)
+process i.e. a linear combination of past samples plus white noise. The spectrum of these AR modelled signal can be estimated using  a parametric spectral estimation approach, where the power spectral density (PSD) can be directly evaluated using the AR model parameters which describes the signal. This is a <strong>parametric spectral estimation</strong> approach, where the power spectral density (PSD) is derived from the model parameters.
 </p>
 
 <p>
